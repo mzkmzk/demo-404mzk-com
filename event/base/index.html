@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+<title>js event demo </title>
+
+
+
+<style type="text/css">
+    .j_div_1{ padding: 80px; background-color: red  ;}
+    .j_div_2{ padding: 80px; background-color: yellow;}
+    .j_div_3{ padding: 80px;  background-color: block;}
+    .j_div_3,button { width: 100px; height: 100px  }
+</style>
+
+</head>
+<body >
+
+<div class="j_div_1">
+    <div class="j_div_2">
+        <div class="j_div_3">
+           <button>按钮</button>
+        </div>
+    </div>
+</div>
+<ul class="j_event_pritf">
+    
+</ul>
+<div id="indicator">
+    <div id="dotty"></div>
+</div>
+<script type="text/javascript">
+
+//声明类型事件关系
+var EVENT_PRITF = [
+    {
+        type: 'click'
+    },
+    {
+        type: 'orientationchange'
+    },
+    {
+        type: 'resize'
+    },
+    {
+        type: 'mousedown'
+    },
+    /*{
+        type: 'mousemove'
+    },*/
+    {
+        type: 'mousecancel'
+    },
+    {
+        type: 'mouseup'
+    },
+    {
+        type: 'pointerdown'
+    },
+    /*{
+        type: 'pointermove'
+    },*/
+    {
+        type: 'pointercancel'
+    },
+    {
+        type: 'pointerup'
+    },
+    {
+        type: 'touchstart'
+    },
+    {
+        type: 'touchmove'
+    },
+    {
+        type: 'touchcancel'
+    },
+    {
+        type: 'touchend'
+    },
+    {
+        type: 'transitionend'
+    },
+    {
+        type: 'webkitTransitionEnd'
+    },
+    {
+        type: 'oTransitionEnd'
+    },
+    {
+        type: 'MSTransitionEnd'
+    },
+]
+
+//绑定事件
+
+var bind_event = function(event_type){
+    window.addEventListener(event_type, event_pritf.bind(null,'window 捕抓 '+event_type) ,true);
+    window.addEventListener(event_type, event_pritf.bind(null,'window 非捕抓 '+event_type) );
+
+     document.addEventListener(event_type, event_pritf.bind(null,'document 捕抓 '+event_type) ,true);
+    document.addEventListener(event_type, event_pritf.bind(null,'document 非捕抓 '+event_type) );
+
+     document.body.addEventListener(event_type, event_pritf.bind(null,'document.body 捕抓 '+event_type) ,true);
+    document.body.addEventListener(event_type, event_pritf.bind(null,'document.body 非捕抓 '+event_type) );
+
+   document.querySelector('.j_div_1').addEventListener(event_type, event_pritf.bind(null,'.j_div_1 捕抓 '+event_type) ,true);
+   document.querySelector('.j_div_1').addEventListener(event_type, event_pritf.bind(null,'.j_div_1 非捕抓 '+event_type) );
+
+    document.querySelector('.j_div_2').addEventListener(event_type, event_pritf.bind(null,'.j_div_2 捕抓 '+event_type) ,true);
+   document.querySelector('.j_div_2').addEventListener(event_type, event_pritf.bind(null,'.j_div_2 非捕抓 '+event_type) );
+
+   document.querySelector('.j_div_3').addEventListener(event_type, event_pritf.bind(null,'.j_div_3 捕抓 '+event_type) ,true);
+   document.querySelector('.j_div_3').addEventListener(event_type, event_pritf.bind(null,'.j_div_3 非捕抓 '+event_type) );
+}
+
+var event_pritf = function(content){
+    var date = new Date(),
+        time =  date.getSeconds() + ": " + date.getMilliseconds();
+    window.event_pritf_cache.push({
+       time: time,
+        content: content
+    })
+}
+
+for (var i = 0; i < EVENT_PRITF.length; i++) {
+    bind_event( EVENT_PRITF[i].type  )
+}
+
+
+
+//输出到DOM
+window.event_pritf_cache = [];
+window.read_event_pritf_cache_index = 0;
+var j_event_pritf = document.querySelector('.j_event_pritf')
+console.log(j_event_pritf)
+setInterval(function(){
+    var li_array_string = ''
+    for (var i = read_event_pritf_cache_index; i < window.event_pritf_cache.length; i++) {
+         li_array_string += '<li>' + window.event_pritf_cache[i].time + " " +window.event_pritf_cache[i].content + "</li>"
+    }
+    if( li_array_string !== '' ){
+        li_array_string += '<li></li>'
+    }
+    read_event_pritf_cache_index = window.event_pritf_cache.length
+    j_event_pritf.innerHTML += li_array_string
+},200)
+
+
+</script>
+</body>
+</html>
