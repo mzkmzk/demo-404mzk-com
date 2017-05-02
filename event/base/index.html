@@ -138,14 +138,17 @@ var j_event_pritf = document.querySelector('.j_event_pritf')
 console.log(j_event_pritf)
 setInterval(function(){
     var li_array_string = ''
-    for (var i = read_event_pritf_cache_index; i < window.event_pritf_cache.length; i++) {
-         li_array_string += '<li>' + window.event_pritf_cache[i].time + " " +window.event_pritf_cache[i].content + "</li>"
-    }
-    if( li_array_string !== '' ){
+
+    if( ( window.event_pritf_cache.length ) !== read_event_pritf_cache_index ){
         li_array_string += '<li></li>'
     }
+    for (var i = window.event_pritf_cache.length - 1; i >= read_event_pritf_cache_index; i--) {
+         li_array_string += '<li>' + window.event_pritf_cache[i].time + " " +window.event_pritf_cache[i].content + "</li>"
+    }
+    
+    
     read_event_pritf_cache_index = window.event_pritf_cache.length
-    j_event_pritf.innerHTML += li_array_string
+    j_event_pritf.innerHTML = li_array_string +  j_event_pritf.innerHTML
 },200)
 
 

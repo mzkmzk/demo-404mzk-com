@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+<title>简单图片切换轮播</title>
+
+<style type="text/css">
+    .wrapper{
+        user-select:none;
+    }
+    img{
+        width: 680px;
+        height: 240px;
+    }
+
+</style>
+
+</head>
+<body >
+
+
+<div class="wrapper">
+     <a href="javascript:;" class="j_pre">上一张</a>
+    <img class="j_wrapper_img" />
+   
+    <a href="javascript:;" class="j_next" >下一张</a>
+    <p>当前第 <em class="j_cur_index">0</em> 张</p>
+</div>
+
+<script type="text/javascript">
+    var image_array = [
+        '../images/wechat.png',
+        '../images/sogou.png',
+        '../images/xmind8.png'
+    ],
+    cur_index = 0,
+    change_pic = function(next_index){
+
+        cur_index = next_index < 0 ? image_array.length + next_index : next_index % image_array.length
+
+        document.querySelector('.j_wrapper_img').src = image_array [ cur_index ]
+        document.querySelector('.j_cur_index').innerHTML = cur_index
+    }
+    document.querySelector('.j_wrapper_img').src = image_array[ cur_index ]
+    document.querySelector('.j_pre').addEventListener('click',function(){
+        change_pic( cur_index - 1 )
+    })
+
+    document.querySelector('.j_next').addEventListener('click',function(){
+        change_pic( cur_index + 1 )
+    })
+
+
+</script>
+
+
+
+</body>
+</html>
