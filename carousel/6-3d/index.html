@@ -9,12 +9,12 @@
 <style type="text/css">
     .wrapper{
         user-select:none;
-        width: 850px;
-        overflow: hidden;
+        width: 1500px;
+         overflow: hidden;
     }
    
     ul{
-        padding-left: 80px;
+        padding-left: 300px;
         white-space:nowrap;
     }
     li{
@@ -79,7 +79,9 @@
          document.querySelector('.j_carousel_ul').style.marginLeft = '-' + 1 * 680 +'px'; //纠正滑动距离
     }
 
-    
+     document.querySelector('.j_li_0').style.cssText = 'transform: translateZ(-200px)  rotateY(125deg) ';
+        document.querySelector('.j_li_1').style.cssText = 'transform: translateX(0px) translateZ(-200px) rotateY(125deg)';
+        document.querySelector('.j_li_2').style.cssText ='transform: translateZ(-200px) rotateY(-45deg)';
 
       document.querySelector('.j_carousel_ul').style.marginLeft = '-' + 1 * 680 +'px';
     document.querySelector('.j_img_0').src = IMAGE_ARRAY[ IMAGE_ARRAY.length - 1 ];
@@ -103,7 +105,7 @@
 
 
 </script>
-<script type="text/javascript" src="./scroll.js"></script>
+<script type="text/javascript" src="../5-scroll/scroll.js"></script>
 
 
 </body>
