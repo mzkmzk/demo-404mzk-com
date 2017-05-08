@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+<title>快排</title>
+
+<style type="text/css">
+
+
+</style>
+
+</head>
+<body >
+
+
+
+<script type="text/javascript" src="../lib/underscore.js"></script>
+<script type="text/javascript">
+var quick_sort = function(sort_array){
+    if (sort_array.length <= 1) return sort_array 
+
+    var sort_array_length = sort_array.length,
+        privot = 0,
+        left_array = _.filter(sort_array, function(element, index){
+            return ( element <= sort_array[ privot ] && index !== privot ) 
+        }),
+        right_array = _.filter(sort_array, function(element, index){
+            return  ( element > sort_array[ privot ] && index !== privot ) 
+        })
+        left_array = quick_sort(left_array)
+        right_array = quick_sort(right_array)
+        
+    return left_array.concat([ sort_array[ privot ] ], right_array)
+}
+
+console.log(quick_sort([0,3,1,2,2]))
+console.log(quick_sort([2,4,3,4,6,3,2,5,6,2,3,6,5,4]))
+</script>
+
+
+
+</body>
+</html>

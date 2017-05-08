@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+<title>归并排序</title>
+
+<style type="text/css">
+
+
+</style>
+
+</head>
+<body >
+
+
+
+<script type="text/javascript" src="../lib/underscore.js"></script>
+<script type="text/javascript">
+
+var _merge = function(left, right){
+    var tmp = []
+    while ( left.length !== 0 && right.length !==0 ){
+        left[0] > right[0] ? tmp.push( right.shift() ) : tmp.push( left.shift() )
+    }
+    return tmp.concat(left, right)
+}
+
+Array.prototype.merge_sort = function(){
+    if ( this.length < 2 ) return this
+    var mid = parseInt(this.length / 2),
+        left = this.slice( 0, mid ).merge_sort(),
+        right = this.slice(mid).merge_sort()
+    return _merge( left, right )
+}
+
+console.log([0,3,1].merge_sort())
+console.log([0,3].merge_sort())
+console.log([0,3,4].merge_sort())
+console.log([0,3,1,2,2].merge_sort())
+console.log([2,4,3,4,6,3,2,5,6,2,3,6,5,4].merge_sort())
+</script>
+
+
+
+</body>
+</html>
