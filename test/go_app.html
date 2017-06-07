@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+<title>网页调起APP测试 </title>
+
+
+
+</head>
+<body >
+<a id="openSchemeLink">跳转到支付宝</a>
+<a href="alipays://platformapi/startapp?appId=20000001&_t=1495616621235">跳转到支付宝</a>
+<br/>
+<a href="https://itunes.apple.com/cn/app/id333206289?mt=8">打开APPstore的 支付宝</a>
+<br/>
+<a href="itms-apps://itunes.apple.com/cn/app/nuan-dao/id583307376?mt=8">打开APPstore的 暖岛</a>
+<br/>
+<a href="nuandao://web2app">打开APPstore的 nuandao</a>
+
+<script type="text/javascript" src="./callapp.js"></script>
+<script type="text/javascript">
+//window.location = 'nuandao://web2app';
+setTimeout(function() {
+    //window.location = 'itms-apps://itunes.apple.com/cn/app/nuan-dao/id583307376?mt=8'
+}, 30);
+
+function customClickEvent() {
+        var clickEvt;
+        if (window.CustomEvent) {
+            clickEvt = new window.CustomEvent('click', {
+                canBubble: true,
+                cancelable: true
+            });
+        } else {
+            clickEvt = document.createEvent('Event');
+            clickEvt.initEvent('click', true, true);
+        }
+
+        return clickEvt;
+    }
+
+/*
+var openSchemeLink = document.getElementById('openSchemeLink');
+openSchemeLink.href = 'alipays://platformapi/startapp?appId=20000001&_t=1495616621235';
+openSchemeLink.dispatchEvent(customClickEvent());
+
+
+
+
+var scheme = 'alipays://platformapi/startApp?appId=20000001';
+ callapp.gotoPage(scheme, 'com.eg.android.AlipayGphone', true);
+*/
+
+
+</script>
+</body>
+</html>

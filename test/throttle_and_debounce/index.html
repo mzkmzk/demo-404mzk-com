@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+<title>js throttle_andr_debounce demo </title>
+
+
+
+<style type="text/css">
+
+</style>
+
+</head>
+<body >
+<p>事件间隔都是3000ms的 节流和防抖</p>
+<h1>Common</h1>
+<p >正常触发mousemove次数: <em class="j_common_sum">0</em></p>
+<hr/>
+<h1>Throttle</h1>
+<p >Throttle后 触发mousemove次数: <em class="j_throttle_sum">0</em></p>
+<hr/>
+<h1>简易的Throttle</h1>
+<p >Throttle后 触发mousemove次数: <em class="j_my_throttle_sum">0</em></p>
+<hr/>
+<h1>Debounce</h1>
+<p >Debounce后 触发mousemove次数: <em class="j_debounce_sum">0</em></p>
+<hr/>
+<script type="text/javascript" src="/lib/underscore.js"></script>
+<script type="text/javascript">
+//
+window.addEventListener('mousemove', function(){
+    document.querySelector('.j_common_sum').innerHTML = parseInt(document.querySelector('.j_common_sum').innerHTML) + 1;
+})
+
+var throttled = _.throttle(function(){
+    document.querySelector('.j_throttle_sum').innerHTML = parseInt(document.querySelector('.j_throttle_sum').innerHTML) + 1;
+} ,3000, {
+    //leading: false,
+    //trailing: false
+});
+
+var my_throttled_timeout = null,
+    prev_time = null,
+    my_function = function(){
+        document.querySelector('.j_my_throttle_sum').innerHTML = parseInt(document.querySelector('.j_my_throttle_sum').innerHTML) + 1;
+        my_throttled_timeout = null
+        prev_time = new Date().getTime();
+
+    }
+window.addEventListener('mousemove', function(){
+    if (my_throttled_timeout) return;
+    remaining = 3000 - ( new Date().getTime() - prev_time )
+    if ( remaining <= 0 ) {
+        my_function();
+    }else {
+        my_throttled_timeout = setTimeout(function(){
+            my_function();
+        }, remaining)
+    }   
+})
+
+window.addEventListener('mousemove', throttled);
+
+var debounced = _.debounce(function(){
+    document.querySelector('.j_debounce_sum').innerHTML = parseInt(document.querySelector('.j_debounce_sum').innerHTML) + 1;
+} ,3000);
+
+window.addEventListener('mousemove', debounced);
+
+</script>
+</body>
+</html>
