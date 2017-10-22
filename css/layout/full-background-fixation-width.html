@@ -1,0 +1,61 @@
+<html>
+    <head>
+    <link rel="stylesheet" type="text/css" href="/lib/highight/style/monokai-sublime.css">
+    <style>
+        .demo_div_1 {
+            background: orange;
+
+        }
+        .demo_div_1_wrapper {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .demo_div_2 {
+            background: orange;
+            padding: 0 calc(50% - 450px)
+        }
+    </style>
+    </head>
+    <body>
+    <h1 id="demo_1">DEMO 1: margin: auto实现</h1>
+        <pre class="css">
+<code>
+.demo_div_1 {
+    background: orange;
+}
+.demo_wrapper {
+    max-width: 900px;
+    margin: auto;
+}
+</code>
+        </pre>
+    <div class="demo_div_1">
+        <div class="demo_div_1_wrapper">
+            <h1>Hi I am demo</h1>
+ 
+            <h3>mzk</h3>
+        </div>
+    </div>
+
+    <!--DEMO 2-->
+    <h1 id="demo_2">DEMO 2: calc+padding 实现</h1>
+        <pre class="css">
+<code>
+.demo_div_2 {
+    background: orange;
+    padding: 0 calc(50% - 450px)
+}
+</code>
+        </pre>
+    <div class="demo_div_2">
+         <h1>Hi I am demo</h1>
+ 
+            <h3>mzk</h3>
+    </div>
+    
+    <script src="/lib/highight/9.12.0.min.js"></script>
+    <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+
+    </body>
+</html>

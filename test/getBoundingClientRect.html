@@ -33,13 +33,16 @@ div {
 
 
 var jieliu = _.debounce(function(){
-    var rect = document.querySelector('.j_client_rect').getBoundingClientRect()
+    var rect = document.querySelector('.j_client_rect').getBoundingClientRect(),
+        window_height = window.innerHeight || document.documentElement.clientHeight,
+        window_width = 
     console.log('top: ' + rect.top);
     console.log('left: ' + rect.left);
     console.log('right: ' + rect.right);
     console.log('bottom: ' + rect.bottom);
-   
+   var window_height = 
    console.log('is in viewport' + ( 
+        rect.top 
         rect.top >= 0 &&
         rect.left >= 0 &&
         rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) && /*or $(window).height() */

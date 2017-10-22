@@ -1,0 +1,187 @@
+<html>
+    <head>
+    <link rel="stylesheet" type="text/css" href="/lib/highight/style/monokai-sublime.css">
+    <style>
+        /**
+         * Bouncing animation
+         */
+
+        @keyframes bounce {
+            60%, 80%, to {
+                transform: translateY(400px);
+                animation-timing-function: ease-out;
+            }
+            70% { transform: translateY(300px); }
+            90% { transform: translateY(360px); }
+        }
+
+        .ball {
+            width: 0; height: 0; padding: 1.5em;
+            border-radius: 50%;
+            margin: auto;
+            background: red radial-gradient(at 30% 30%, #fdd, red);
+            animation: bounce 10s ease-in forwards;
+        }
+
+        .demo_div_1 {
+            background: linear-gradient(skyblue, white 450px, yellowgreen 0);
+            min-height: 100vh;
+
+        }
+
+        /**
+         * Frame-by-frame animations
+         */
+
+        @keyframes loader {
+            to { background-position: -800px 0; }
+        }
+
+        .demo_div_2 {
+            width: 100px; height: 100px;
+            text-indent: 999px; overflow: hidden; /* Hide text */
+            background: url(../images/loader.png) 0 0;
+            animation: loader 1s infinite steps(8);
+        }
+        p {
+            padding: 1em;
+            background: gold;
+        }
+        @keyframes blink-2 {
+            to {
+                color: transparent
+            }
+        }
+        
+
+        .demo_div_3 p{
+            animation: .5s blink-2 6;
+            animation-direction: alternate;
+        }
+        
+         /**
+         * Typing animation
+         */
+
+        @keyframes typing {
+            from { width: 0 }
+        }
+
+        @keyframes caret {
+            50% { border-right-color: transparent; }
+        }
+
+        .demo_div_4 h1 {
+            font: bold 200% Consolas, Monaco, monospace;
+            /*width: 8.25em;*/
+            width: 15ch;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: .05em solid;
+            animation: typing 8s steps(15),
+            caret 1s steps(1) infinite;
+        }
+                
+    </style>
+    </head>
+    <body>
+    <h1>DEMO 1: 自由落体球</h1>
+        <pre class="css">
+<code>
+@keyframes bounce {
+    60%, 80%, to {
+        transform: translateY(400px);
+        animation-timing-function: ease-out;
+    }
+    70% { transform: translateY(300px); }
+    90% { transform: translateY(360px); }
+}
+
+.ball {
+    width: 0; height: 0; padding: 1.5em;
+    border-radius: 50%;
+    margin: auto;
+    background: red radial-gradient(at 30% 30%, #fdd, red);
+    animation: bounce 10s ease-in forwards;
+}
+
+.demo_div_1 {
+    background: linear-gradient(skyblue, white 450px, yellowgreen 0);
+    min-height: 100vh;
+
+}   
+</code>
+        </pre>
+    <div class="demo_div_1">
+        <div class="ball"></div>
+    </div>
+    <h1 id="demo_2">DEMO 2: 逐帧loading动画</h1>
+        <pre class="css">
+<code>
+@keyframes loader {
+    to { background-position: -800px 0; }
+}
+
+.demo_div_2 {
+    width: 100px; height: 100px;
+    text-indent: 999px; overflow: hidden; /* Hide text */
+    background: url(../images/loader.png) 0 0;
+    animation: loader 1s infinite steps(8);
+}
+</code>
+        </pre>
+    <div class="demo_div_2" >
+       
+    </div>
+    </div>
+    <h1 id="demo_3">DEMO 3: 闪烁动画</h1>
+        <pre class="css">
+<code>
+@keyframes blink-2 {
+    to {
+        color: transparent
+    }
+}
+
+
+.demo_div_3 p{
+    animation: .5s blink-2 6;
+    animation-direction: alternate;
+}
+</code>
+        </pre>
+    <div class="demo_div_3" >
+       <p class="">Peek-a-boo!</p>
+    </div>
+    <h1 id="demo_4">DEMO 4: 打字动画</h1>
+        <pre class="css">
+<code>
+@keyframes typing {
+    from { width: 0 }
+}
+
+@keyframes caret {
+    50% { border-right-color: transparent; }
+}
+
+.demo_div_4 h1 {
+    font: bold 200% Consolas, Monaco, monospace;
+    /*width: 8.25em;*/
+    width: 15ch;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: .05em solid;
+    animation: typing 8s steps(15),
+                caret 1s steps(1) infinite;
+}
+                
+</code>
+        </pre>
+    <div class="demo_div_4" >
+       <h1 class="">CSS is awesome!</h1>
+    </div>
+    <script src="/lib/highight/9.12.0.min.js"></script>
+    <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+
+    </body>
+</html>

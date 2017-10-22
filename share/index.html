@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+<title>分享组件测试 </title>
+<script type="text/javascript" src="//apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="./vip-share.js?60112031257"></script>
+<script type="text/javascript">
+var _vip_share = new vip_share({
+    title: '哇哈哈',
+    link: 'http://www.xunlei.com',
+    desc: '我是简介',
+    success: function(){alert('分享成功啦`')},
+    cancel: function(){alert('取消分享')}
+});
+
+
+</script>
+
+</head>
+<body >
+<a href="javascript:;" onclick="_vip_share.share()">分享</a>
+
+
+
+</body>
+</html>
