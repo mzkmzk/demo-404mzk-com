@@ -13,6 +13,8 @@ const flags = {
   chromeFlags: ['--headless']
 };
 
-launchChromeAndRunLighthouse('https://xunlei.com', flags).then(results => {
-   console.log(results)
+launchChromeAndRunLighthouse('http://act.vip.xunlei.com/pc/kn/2017/wky/index.html', flags).then(results => {
+    results.artifacts = 'ignore'
+    results.reportCategories = 'ignore '
+   console.log(JSON.stringify(results, null, 4))
 });
