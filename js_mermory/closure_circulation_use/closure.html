@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+'use strict';
+
+function LeakObject () {
+  this.value = new Array(1024 * 1024).join('X');
+}
+
+var leakObject = null;
+
+function addLeak() {
+  var oldObj = leakObject;
+  leakObject = {
+    leakObj: new LeakObject(),
+    // oldObj: oldObj
+    closure: function () {
+      console.log(oldObj);
+    }
+  };
+}
+
+function releaseLeak () {
+  leakObject = null;
+}
+</script>
+</head>
+<body>
+<button onclick="addLeak()">Add Leak</button>
+<button onclick="releaseLeak()">Release Leak</button>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+'use strict';
+
+
+function addLeak() {
+  var dom = document.createElement('a')
+
+    dom.innerHTML = new Array(1024 * 1024).join('x')
+    document.body.appendChild(dom)
+    dom.onclick = function(){
+        console.log(dom.innerHTML)
+    }
+    // dom.onClick = null 
+    //document.body.removeChild(dom)
+
+
+}
+
+function releaseLeak () {
+  leakObject = null;
+}
+</script>
+</head>
+<body>
+<button onclick="addLeak()">Add Leak</button>
+<button onclick="releaseLeak()">Release Leak</button>
+</body>
+</html>

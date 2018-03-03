@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<p id="p"></p>
+<body>
+    <script >
+        
+        var init_object = {
+            style_status_class: {
+                '1-1': {
+                    render: function(){
+                        var element = init_object.style_status_class['1-1'],
+                            p_element = document.querySelector('#p')
+                        
+                        p_element.innerHTML = new Array(1024 * 1024).join('x')
+                        /*p_element.innerHTML  = '<span class="num ">年</span>\
+                        <span class="num ">年</span>\
+                        <span>:</span>\
+                        <span class="num ">年</span>\
+                        <span class="num ">年</span>\
+                        <span>:</span>\
+                        <span class="num ">年</span>\
+                        <span class="num ">年</span>'*/
+
+                    }
+                }
+            }
+        }
+        var interval_id = setInterval( init_object.style_status_class['1-1'].render, 1000)
+    </script>
+</body>
+</html>

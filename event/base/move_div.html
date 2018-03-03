@@ -1,0 +1,56 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <style >
+        .j_demo_div{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        .j_demo_div_p{
+
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class="j_demo_div">
+        <p class="j_demo_div_p">滑动此区域</p>
+    </div>
+    
+    <script >
+    var div = document.querySelector('.j_demo_div'),
+        half_width = div.offsetWidth / 2,
+        half_height = div.offsetHeight / 2,
+        min_x = 0,
+        min_y = 0,
+        max_x = window.innerWidth - div.offsetWidth,
+        max_y = window.innerHeight - div.offsetHeight
+        
+    div.addEventListener('touchmove', function(event){
+        event.preventDefault()
+        var x = event.touches[0].pageX - half_width,
+            y = event.touches[0].pageY - half_height
+
+        if ( x < min_x ) {
+            x = min_x
+        }else if ( x > max_x){
+            x = max_x
+        }
+
+        if ( y < min_y ) {
+            y = min_y
+        }else if ( y > max_y){
+            y = max_y
+        }
+        div.style.left = x  + 'px'
+        div.style.top = y + 'px'
+        
+    })
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+
+<p>
+<button onclick="largeClosures()">largeClosures</button></p>
+<p><button onclick="smallClosures()">smallClosures</button></p>
+<p><button onclick="evalClosures()">evalClosures</button></p>
+<p><button onclick="clearClosures()">clearClosures</button></p>
+
+
+<script >
+    'use strict';
+
+var closures = [];
+
+function createLargeClosure() {
+    var largeStr = new Array(1000000).join('x');
+    return function lC() {
+        return largeStr;
+    };
+}
+
+function createSmallClosure() {
+    var smallStr = 'x';
+    var largeStr = new Array(1000000).join('x');
+    return function sC() {
+        return smallStr;
+    };
+}
+
+function createEvalClosure() {
+    var smallStr = 'x';
+    var largeStr = new Array(1000000).join('x');
+    return function eC() {
+        eval('');
+        return smallStr;
+    };
+}
+
+function largeClosures() {
+    closures.push(createLargeClosure());
+}
+
+function smallClosures() {
+    closures.push(createSmallClosure());
+
+}
+
+function evalClosures() {
+    closures.push(createEvalClosure());
+    
+}
+
+function clearClosures() {
+    closures = []
+}
+
+
+</script>
+</body>
+</html>

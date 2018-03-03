@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+
+<title>js event demo </title>
+<!-- 这里不知道为啥 有两个时间不断调换位置 在click时-->
+</head>
+<body >
+
+<ul class="j_event_pritf">
+    
+</ul>
+
+tips:
+<ul>
+    <li>此页面监听事件均绑定在window中</li>
+    <li>ios无法触发click, 是因为window非可点击元素</li>
+</ul>
+<script src="http://demo.404mzk.com/lib/underscore.js"></script>
+<script type="text/javascript">
+
+//声明类型事件关系
+var event_array = [
+    {
+        event_type: 'click' 
+    },
+    {
+        event_type: 'orientationchange' 
+    },
+    {
+        event_type: 'resize' 
+    },
+    {
+        event_type: 'mousedown' 
+    },
+    /*{
+        event_type: 'mousemove'
+    },*/
+    {
+        event_type: 'mousecancel' 
+    },
+    {
+        event_type: 'mouseup' 
+    },
+    {
+        event_type: 'pointerdown' 
+    },
+    /*{
+        event_type: 'pointermove'
+    },*/
+    {
+        event_type: 'pointercancel' 
+    },
+    {
+        event_type: 'pointerup' 
+    },
+    {
+        event_type: 'touchstart' 
+    },
+    {
+        event_type: 'touchmove' 
+    },
+    {
+        event_type: 'touchcancel' 
+    },
+    {
+        event_type: 'touchend' 
+    },
+    {
+        event_type: 'touchenter'
+    },
+    {
+        event_type: 'touchleave'
+    },
+    {
+        event_type: 'transitionend' 
+    },
+    {
+        event_type: 'webkitTransitionEnd' 
+    },
+    {
+        event_type: 'oTransitionEnd' 
+    },
+    {
+        event_type: 'MSTransitionEnd'
+    },
+]
+
+//绑定事件
+var bind_event = function(event_type){
+
+
+   window.addEventListener(event_type, function(event){
+        console.log(event)
+        var i = _.findIndex(event_array, function(element){ return element.event_type === event_type } )
+        
+        event_array[i] = {
+            event_type: event_type,
+            num: event_array[i].num ? (event_array[i].num + 1) : 1,
+            last_time: utils.get_time()
+        }
+        rerender()
+   })
+
+   
+}
+
+var rerender = function(){
+    event_array.sort(function(a,b){
+        if ( isNaN(a.num)){
+            a.num = 0
+            a.last_time = 0
+        }
+        if ( isNaN(b.num)){
+            b.num = 0
+            b.last_time = 0
+        }
+        /*if (a.event_type === 'touchstart' || b.event_type === 'touchstart')
+        console.log(a.event_type, a.num)
+         console.log(b.event_type, b.num)*/
+        if (a.num != b.num){
+            return   b.num - a.num
+        }
+        
+        return b.last_time - a.last_time
+        
+       
+        
+    })
+
+    var html = ''
+    _.each(event_array, function(element){
+        html += element.event_type + '触发 <em>'+(element.num || '0')+'</em> 次 最后一次: <em>'+(element.last_time || '')+'</em><br/><br/>'
+    })
+
+    document.querySelector('.j_event_pritf').innerHTML = html
+}
+
+var utils = {
+    first_time: new Date().getTime(),
+    get_time: function(){
+        if (window.performance && performance.now) {
+            return window.performance.now().toFixed(3)
+        }else {
+            return new Date().getTime() - utils.first_time
+        }
+    }
+}
+
+rerender()
+for (var i = 0; i < event_array.length; i++) {
+    bind_event( event_array[i].event_type  )
+}
+
+
+
+</script>
+</body>
+</html>

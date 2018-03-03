@@ -12,7 +12,7 @@
     .j_div_1{ padding: 80px; background-color: red  ;}
     .j_div_2{ padding: 80px; background-color: yellow;}
     .j_div_3{ padding: 80px;  background-color: block;}
-    .j_div_3,button { width: 100px; height: 100px  }
+    .j_div_3 button { width: 100px; height: 100px  }
 </style>
 
 </head>
@@ -25,6 +25,7 @@
         </div>
     </div>
 </div>
+<button class="j_clear">清空</button>
 <ul class="j_event_pritf">
     
 </ul>
@@ -114,6 +115,12 @@ var bind_event = function(event_type){
 
    document.querySelector('.j_div_3').addEventListener(event_type, event_pritf.bind(null,'.j_div_3 捕抓 '+event_type) ,true);
    document.querySelector('.j_div_3').addEventListener(event_type, event_pritf.bind(null,'.j_div_3 非捕抓 '+event_type) );
+
+   document.querySelector('.j_clear').addEventListener('click', function(e){
+        e.stopPropagation()
+         document.querySelector('.j_event_pritf').innerHTML = ''
+         return false
+   }, true)
 }
 
 var event_pritf = function(content){

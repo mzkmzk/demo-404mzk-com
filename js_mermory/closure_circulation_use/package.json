@@ -1,0 +1,14 @@
+{
+  "name": "closure_circulation_use",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "22.2.2"
+  }
+}

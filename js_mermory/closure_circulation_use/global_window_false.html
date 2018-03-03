@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <script>
+        var global_window = {
+            init: () => {
+                a = []
+                for (var i = 0; i < 300; i++) {
+                    a[i] = new Array(1024 * 1024 * 1).join('*')
+                }
+            }
+        }
+        global_window.init()
+    </script>
+</body>
+</html>

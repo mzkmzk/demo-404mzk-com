@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+<button onclick="addLeak()">Add Leak</button>
+<button onclick="releaseLeak()">Release Leak</button>
+<script type="text/javascript">
+
+
+
+var leakObject = null
+function addLeak() {
+
+      var ul = document.createElement('ul');
+      for (var i = 0; i < 10; i++) {
+        var li = document.createElement('li');
+        ul.appendChild(li);
+      }
+      leakObject = ul;
+
+      document.body.appendChild(ul)
+      document.body.removeChild(ul)
+      
+}
+
+function releaseLeak () {
+  leakObject = null;
+}
+</script>
+</body>
+</html>

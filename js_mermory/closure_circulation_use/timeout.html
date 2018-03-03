@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<script >
+    var buggyObject = {
+     callAgain: function () {
+      var ref = this,
+          array 
+      var val = setTimeout(function () {
+        //array = new Array(1024 * 1024 ).join('x')
+       console.log('Called again: ' 
+       + new Date().toTimeString()); 
+       ref.callAgain();
+      }, 1000);
+     }
+    };
+
+    buggyObject.callAgain();
+    //buggyObject = null;
+</script>
+</body>
+</html>

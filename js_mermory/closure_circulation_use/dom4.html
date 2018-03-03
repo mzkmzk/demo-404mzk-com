@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+<ul>
+  <li>先memory快照一下</li>
+  <li>点击createTree后, memory快照一下, 过滤detached</li>
+  <li>detachTree, memory快照一下, 过滤detached</li>
+  <li>removeTree, memory快照一下, 过滤detached</li>
+  <li>removeLeak, memory快照一下, 过滤detached</li>
+</ul>
+<button onclick="createTree()">createTree</button>
+<button onclick="detachTree()">detachTree</button>
+<button onclick="removeTree()">removeTree</button>
+<button onclick="removeLeak()">removeLeak</button>
+
+<p id="p"></p>
+<script type="text/javascript">
+
+
+
+var tree = document.getElementById("p") ,
+    need_span = null
+    
+function createTree() {
+
+
+  var middle_div = document.createElement("div"),
+      little_span = document.createElement("span")
+
+  
+  middle_div.data = new Array(1024 * 1024).join('x');
+  tree.appendChild(middle_div); 
+
+  little_span.id = 'little_span'
+  middle_div.appendChild(little_span)  
+
+  need_span = document.getElementById('little_span') 
+}
+
+function detachTree(){
+  tree.innerHTML = ''
+}
+function removeTree(){
+  tree = null
+}
+function removeLeak(){
+  need_span = null
+}
+
+
+
+</script>
+</body>
+</html>

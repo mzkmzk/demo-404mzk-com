@@ -1,0 +1,104 @@
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <style >
+        .j_demo_div{
+            width: : 500px;
+            height: 500px;
+            background: red;
+        }
+        .j_demo_div_p{
+
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class="j_demo_div">
+        <p class="j_demo_div_p">滑动此区域</p>
+    </div>
+    <ul class="j_demo_ul"></ul>
+    <script >
+        (function () {
+    var coord={},
+        start={},
+        el;
+
+    document.addEventListener('touchstart', touchStart);
+    document.addEventListener('touchmove',touchMove);
+    document.addEventListener('touchend',touchEnd);
+    document.addEventListener('touchcanel',touchCancel);
+
+    function newEvent(type){
+        return new Event(type,{ bubbles: true,cancelable: true});
+    }
+
+    function touchCancel () {
+        coord = {}
+    }
+
+    function touchStart(e){
+
+        var c = e.touches[0];
+        start = {
+            x: c.clientX,
+            y: c.clientY,
+            time: Date.now()
+        };
+        el= e.target;
+        el='tagName' in el ? el : el.parentNode;
+    }
+
+    function touchMove(e){
+        var t = e.touches[0];
+        coord = {
+            x: t.clientX - start.x,
+            y: t.clientY - start.y
+        }
+    }
+
+    function touchEnd(){
+        var touchTimes = Date.now() - start.time,
+                c = 250 > touchTimes && Math.abs(coord.x) > 20 || Math.abs(coord.x) > 80,
+                s = 250 > touchTimes && Math.abs(coord.y) > 20 || Math.abs(coord.y) > 80,
+                left = coord.x < 0,
+                top = coord.y < 0;
+        if (250 > touchTimes && (isNaN(coord.y) || Math.abs(coord.y)) < 12 && (isNaN(coord.x) || Math.abs(coord.x) < 12)) {
+            el.dispatchEvent(newEvent('tap'));
+        }else if(750<touchTimes && (isNaN(coord.y) || Math.abs(coord.y)) < 12 && (isNaN(coord.x) || Math.abs(coord.x) < 12)){
+            el.dispatchEvent(newEvent('longTap'));
+        }
+        
+        c ? el.dispatchEvent(left ? newEvent('swipeLeft') : newEvent('swipeRight')) : s && el.dispatchEvent(top ? newEvent('swipeUp') : newEvent('swipeDown'));
+
+        coord={};
+    }
+}());
+    var j_demo_ul = document.querySelector('.j_demo_ul')
+    
+    document.querySelector('.j_demo_div').addEventListener('tap', function(){
+        
+        j_demo_ul.innerHTML += '<li>tap</li>'
+    })
+    document.querySelector('.j_demo_div').addEventListener('longTap', function(){
+        
+        j_demo_ul.innerHTML += '<li>longTap</li>'
+    })
+    document.querySelector('.j_demo_div').addEventListener('swipeLeft', function(){
+        
+        j_demo_ul.innerHTML += '<li>swipeLeft</li>'
+    })
+     document.querySelector('.j_demo_div').addEventListener('swipeRight', function(){
+        j_demo_ul.innerHTML += '<li>swipeRight</li>'
+    })
+      document.querySelector('.j_demo_div').addEventListener('swipeUp', function(){
+        j_demo_ul.innerHTML += '<li>swipeUp</li>'
+    })
+       document.querySelector('.j_demo_div').addEventListener('swipeDown', function(){
+        j_demo_ul.innerHTML += '<li>swipeDown</li>'
+    })
+    </script>
+</body>
+</html>

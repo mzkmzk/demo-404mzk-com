@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<button onclick="addLeak()">Add Leak</button>
+<button onclick="notLeak()">not Leak</button>
+<button onclick="releaseLeak()">Release Leak</button>
+    <p id="showEndTime"></p>
+    <script src="https://cdn.bootcss.com/underscore.js/1.8.3/underscore.js"></script>
+    <script >
+        function showEndTime(secondsData,html, id, type) {
+            function GetRTime(secondsData,html, id) {
+                var t = secondsData;
+                var dd = hh = mm = ss ='00';
+                if (t >= 0) {
+                    dd = Math.floor(t / 60 / 60 / 24);
+                    hh = Math.floor(t / 60 / 60 % 24);
+                    mm = Math.floor(t / 60 % 60);
+                    ss = Math.floor(t % 60);
+                } else {
+                    clearInterval(window.timer);
+                }
+                if (type  !== 'notLeak'){ //是否会内存泄露?
+                    html = _.template(html)({
+                        dd: dd,
+                        hh: hh,
+                        mm: mm,
+                        se: ss
+                    });
+                }else { //是否会内存泄露?
+                    html = html.replace(/dd/, dd)
+                           .replace(/hh/, hh)
+                           .replace(/mm/, mm)
+                           .replace(/se/, ss)
+                }
+                document.querySelector(id).innerHTML = html 
+            }
+            window.timer = setInterval(function() {
+                GetRTime(secondsData--, html, id);
+            }, 25);
+        }
+        function addLeak(){
+            showEndTime( 300 * 300, '剩余: <em class="color-in-red"><%= dd%></em>天<em class="color-in-red"><%= hh%></em>时<em class="color-in-red"><%= mm%></em>分<em class="color-in-red"><%= se%></em>秒', '#showEndTime');
+        }
+        function notLeak(){
+            showEndTime( 300 * 300, '剩余: <em class="color-in-red"><%= dd%></em>天<em class="color-in-red"><%= hh%></em>时<em class="color-in-red"><%= mm%></em>分<em class="color-in-red"><%= se%></em>秒', '#showEndTime', 'notLeak');
+        }
+         function releaseLeak(){
+            clearInterval(window.timer)
+        }
+        
+    </script>
+</body>
+</html>

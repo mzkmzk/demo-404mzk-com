@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+<button onclick="addLeak()">Add Leak</button>
+<button onclick="releaseLeak()">Release Leak</button>
+<p id="p"></p>
+<script type="text/javascript">
+
+
+
+var leakObject = null
+function addLeak() {
+
+  var p = document.getElementById("p");
+  detached_div = document.createElement("div");
+  p.appendChild(detached_div);
+  p.removeChild(detached_div);
+  fill();
+      
+}
+function fill()
+{
+  for (var i = 0; i < 3; ++i) {
+    var div = document.createElement('div');
+    div.data = new Array(1024 * 1024).join('x');
+    for (var j = 0, l = div.data.length; j < l; ++j)
+      div.data[j] = j.toString();
+    detached_div.appendChild(div);
+  }
+}
+
+function releaseLeak () {
+  leakObject = null;
+}
+</script>
+</body>
+</html>
