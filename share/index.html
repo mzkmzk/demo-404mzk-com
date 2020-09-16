@@ -6,6 +6,7 @@
 
 <title>分享组件测试 </title>
 <script type="text/javascript" src="//apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+
 <script type="text/javascript" src="./vip-share.js?60112031257"></script>
 <script type="text/javascript">
 var _vip_share = new vip_share({
@@ -16,7 +17,12 @@ var _vip_share = new vip_share({
     cancel: function(){alert('取消分享')}
 });
 
-
+document.addEventListener('WeixinJSBridgeReady', function () {
+    // 通过下面这个API隐藏右上角按钮
+    wx.hideMenuItems({
+    menuList: ["menuItem:copyUrl"] // 要显示的菜单项，所有menu项见附录3
+    });
+});
 </script>
 
 </head>

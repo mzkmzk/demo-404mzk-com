@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>this作用</title>
+    <meta charset="utf-8">
+</head>
+<body>
+    <script>
+    
+        var b = 'window.b'
+        var a = {
+            b: 'a.b',
+            c: function(){
+                "use strict";
+if (true){
+  function f() {  console.log(1)} // !!! 语法错误
+  f();
+}
+                function d(){
+                    console.log(this.b)
+                }
+                d()
+                var e = function(){
+                    console.log(this.b)
+                }
+                e()
+            }
+        }
+        a.c()
+    </script>
+</body>
+</html>

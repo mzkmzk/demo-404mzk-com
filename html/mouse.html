@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+     <link rel="stylesheet" type="text/css" href="/lib/highight/style/monokai-sublime.css">
+</head>
+
+<body>
+ <pre >
+<code class="xml">
+<a href="https://www.xunlei.com" ondragstart="return false">不能拖动链接</a><br/>
+<a href="https://www.xunlei.com" >能拖动链接</a>
+</code>
+</pre>
+<a href="https://www.xunlei.com" ondragstart="return false">不能拖动链接</a><br/>
+<a href="https://www.xunlei.com" >能拖动链接</a>
+<script type="text/javascript">
+    document.querySelectorAll("code").forEach(function(element) {
+    element.innerHTML = element.innerHTML.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+});
+</script>
+<script src="/lib/highight/9.12.0.min.js"></script>
+    <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

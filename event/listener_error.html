@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script >
+        window.addEventListener('error', function(e){
+            console.log('监听到错误')
+            console.log(e)
+
+            
+            if ( !e.error) return 
+            
+            console.log(e.error.__proto__)
+            //console.log( Object.getPrototypeOf( e.error ) )
+        }, true)
+        //只有捕抓模式能捕抓到图片异常 但无法捕抓CSS的
+        aaa()
+    </script>
+    <link rel="stylesheet" type="text/css" href="./css/listener_error.css">
+    <link rel="stylesheet" type="text/css" href="i_am_link_url">
+    <script src="//act.vip.xunlei.com/js/error.js"></script>
+    <script src="iam_script_url"></script>
+    <style type="text/css">
+        body{
+            background: url('i_am_background_url');
+        }
+    </style>
+</head>
+<body>
+    
+    <img src="i_am_img_url"/>
+</body>
+</html>

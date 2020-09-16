@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <ul class="j_tips"></ul>
+
+    <script type="text/javascript">
+        function addTips(str){
+            document.querySelector('.j_tips').innerHTML += '<li>' + str + ' ' + new Date() + '</li>'
+        }
+        setTimeout(function(){
+            document.addEventListener('visibilitychange', function () {
+              // 用户离开了当前页面
+              if (document.visibilityState === 'hidden') {
+                addTips('hidden')
+                document.title = 'hidden';
+              }
+
+              // 用户打开或回到页面
+              if (document.visibilityState === 'visible') {
+                addTips('show')
+                document.title = 'show';
+              }
+            });
+        },2000)
+    </script>
+</body>
+</html>

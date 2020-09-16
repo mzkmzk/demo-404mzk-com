@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        body{
+            background: url('./images/stone-art.jpg')
+        }
+        div{
+            border: 10px solid hsla(0, 0%, 100%, .5);;
+            background: white;
+            
+
+            max-width: 20em;
+            padding: 2em;
+            margin: 2em auto 0;
+            font: 100%/1.5 sans-serif;
+        }
+        .success{
+            background-clip: padding-box;
+        }
+
+        .error{
+            /* 默认border-box  所以背景background 的白在底部 看不出透明的感觉 */
+            /*background-clip: padding-box;*/
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="success">
+    Can I haz semi-transparent borders?
+    Pretty please? Success
+    </div>
+
+    <div class="error">
+    Can I haz semi-transparent borders?
+    Pretty please? Error
+    </div>
+</body>
+</html>

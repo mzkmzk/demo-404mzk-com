@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    function escape(input) {
+    // filter potential comment end delimiters
+    input = input.replace(/->/g, '_');
+
+    // comment the input to avoid script execution
+    return '<!-- ' + input + ' -->';
+}
+document.body.innerHTML = escape('--!><svg/onload=prompt(1)')
+
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>listenerReport</title>
+</head>
+<body>
+<a href="javascript:;" class="j_create_script">创建script</a>
+<a href="javascript:;" class="j_create_error_script">创建error script</a>
+<a href="javascript:;" class="j_create_img">创建img</a>
+<a href="javascript:;" class="j_create_iframe">创建iframe</a>
+<a href="javascript:;" class="j_create_link">创建link</a>
+<script type="text/javascript">
+    
+    document.addEventListener('load', function(){
+        console.log('load')
+        console.log(this)
+        console.log(arguments)
+    }, true)
+
+
+     document.addEventListener('error', function(){
+        console.log('error')
+        console.log(this)
+        console.log(arguments)
+    }, true)
+
+
+    document.querySelector('.j_create_img').addEventListener('click', function(){
+        var img = new Image()
+        img.src = 'https://avatar2.a.88cdn.com/usrimg/410696465/100x100?t=' + (new Date().getTime())
+        document.body.appendChild(img)
+    })
+
+    document.querySelector('.j_create_error_script').addEventListener('click', function(){
+        var script = document.createElement('script')
+        script.src = 'https://img-vip-ssl.a.88cdn.com/lib/jquery/1.12.4/jque111ry.min.js'
+        
+        document.body.appendChild(script)
+    })
+
+    document.querySelector('.j_create_script').addEventListener('click', function(){
+        var script = document.createElement('script')
+        script.src = 'https://img-vip-ssl.a.88cdn.com/lib/jquery/1.12.4/jquery.min.js'
+        
+        document.body.appendChild(script)
+    })
+
+    document.querySelector('.j_create_script').addEventListener('click', function(){
+        var script = document.createElement('script')
+        script.src = 'https://img-vip-ssl.a.88cdn.com/lib/jquery/1.12.4/jquery.min.js'
+        
+        document.body.appendChild(script)
+    })
+
+    document.querySelector('.j_create_iframe').addEventListener('click', function(){
+        var iframe = document.createElement('iframe')
+        iframe.src = 'https://vip.xunlei.com'
+        
+        document.body.appendChild(iframe)
+    })
+
+    document.querySelector('.j_create_link').addEventListener('click', function(){
+        var link = document.createElement('link')
+        link.href = 'https://img-vip-ssl.a.88cdn.com/n_vip_4/css/n_tjinfo.css'
+        link.rel ='stylesheet'
+           
+        //document.getElementsByTagName('head')[0].appendChild( link )
+        document.body.appendChild(link)
+    })
+</script>
+</body>
+</html>

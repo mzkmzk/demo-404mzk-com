@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<button style="width: 10vw; height: 10vh" class="j_copy" data-clipboard-text="http://act.vip.xunlei.com/pc/vip/2018/aaaa/userid=a">copy</button>
+<div class="j_tips"></div>
+<script src="./clipboard.js"></script>
+<script >
+var b = 0
+    var clipboard = new ClipboardJS('.j_copy', {
+      text: function(){
+        b++
+        return 'https://vip.xunlei.com/a/?b=' +b
+      }
+    })
+     
+
+    clipboard.on('success', function(e) {
+         document.querySelector('.j_tips').innerHTML += '<br/> success!' 
+       document.querySelector('.j_tips').innerHTML += '<br/>'+ JSON.stringify(e)
+        
+        //e.clearSelection();
+    });
+
+    clipboard.on('error', function(e) {
+        document.querySelector('.j_tips').innerHTML += '<br/> error!' 
+          document.querySelector('.j_tips').innerHTML += '<br/>'+ JSON.stringify(e)
+
+        
+    });
+
+     document.querySelector('.j_tips').innerHTML += '<br/> support copy and cut command ? ' + ClipboardJS.isSupported() 
+
+    
+</script>
+</body>
+</html>

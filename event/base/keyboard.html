@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>键盘事件</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+</head>
+<body>
+<h1>keydown</h1>
+<input type="text" class="j_keydown" />
+<ul class="j_keydown_ul"></ul>
+<h1>keypress</h1>
+<input type="text" class="j_keypress" />
+<ul class="j_keypress_ul"></ul>
+
+<h1>keyup</h1>
+<input type="text" class="j_keyup" />
+<ul class="j_keyup_ul"></ul>
+
+<h1>监听粘贴操作(不支持IE)</h1>
+<input class="j_copy" />
+<ul class="j_copy_ul"></ul>
+
+<h1>只能输入整数</h1>
+<input type="text" class="j_int_input_1" />
+<script>
+    var event_type_array = [
+        {
+            name: 'keydown'
+        },
+        {
+            name: 'keypress'
+        },
+        {
+            name: 'keyup'
+        }
+    ]
+    var listener = function(el, eventName, handler){
+
+            if (el.addEventListener) {
+                el.addEventListener(eventName, handler);
+            } else {
+                el.attachEvent('on' + eventName, function () {
+                    handler.call(el, window.event);
+                });
+            }
+        },
+        getCode = function(event){
+            if ( event.charCode) {
+                return event.charCode;
+            }else {
+                return event.keyCode;
+            }
+        },
+        init = function(){
+            for (var i = 0; i < event_type_array.length; i++) {
+                var element = event_type_array[i],  
+                    data_string = ''
+
+                 listener(document.querySelector('.j_' + element.name), element.name, function(curent_element){
+                    return function(event){
+                        console.log(event)
+                        console.log(this)
+                        data_string = [
+                            '<li>this.value: ' + this.value + '</li>',
+                            '<li>event.keyCode: ' + event.keyCode + '</li>',
+                            '<li>event.which: ' + event.which + '</li>',
+                             '<li>event.charCode: ' + event.charCode + '</li>',
+                             '<li>event.altKey: ' + event.altKey + '</li>',
+                             '<li>event.ctrlKey: ' + event.ctrlKey + '</li>',
+                             '<li>event.metaKey: ' + event.metaKey + '</li>',
+                             '<li>event.shiftKey: ' + event.shiftKey + '</li>',
+                        ].join(' ')
+                        document.querySelector('.j_' + curent_element.name + '_ul').innerHTML = data_string
+                     }
+                 }(element)) 
+            }
+           
+        }
+    init()
+
+    // ========= 复制粘贴例子
+     
+     var is_mac = navigator.userAgent.indexOf('Mac OS X') !== -1,
+         is_window = (navigator.platform == "Win32") || (navigator.platform == "Windows")
+     listener(document.querySelector('.j_copy'), 'keydown', function(event){
+        if ((is_mac && event.metaKey && getCode(event) === 86)
+            || (is_window && event.ctrlKey && getCode(event) === 86)
+        ){
+            document.querySelector('.j_copy_ul').innerHTML += '<li>被粘贴辣</li>'
+        }
+     })
+
+     // ======= 只能输入整数
+    
+    var prev_string = '';
+    document.querySelector('.j_int_input_1').onkeyup = function () {
+
+      if ( isNaN(this.value) ){
+        this.value = prev_string
+      }else if (this.value === '' ){
+
+      }else {
+        this.value = parseInt(this.value)
+        prev_string = this.value
+      }
+     
+    }
+    
+
+</script>
+
+</body>
+</html>

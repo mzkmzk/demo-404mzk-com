@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+请用chrome打开  debugger时 右侧的scope(作用域链)
+<body>
+    <script type="text/javascript">
+    var bibaoObj = { c: 1};
+    (function(){
+        var withObj = {
+            haha: 1
+        }
+        var bibaoObj = { b: 1}
+        var a = {
+            haha: 3,
+            b: function(myParams){
+                var myParams = 2
+                console.log(this.haha)
+                console.log(bibaoObj)
+                debugger
+                with(withObj){
+                    console.log(this)
+                    console.log(haha)
+                    debugger
+                }
+                try{
+                    xxx
+                }catch(e){
+                    debugger
+                }
+            }
+        }
+        console.log(a.b(1))
+    })()
+
+    </script>
+</body>
+</html>
+

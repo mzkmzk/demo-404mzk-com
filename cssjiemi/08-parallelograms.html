@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        .box {
+            display: inline-block;
+            padding: .5em 1em;
+            border: 0; margin: .5em;
+            background: #58a;
+            color: white;
+            text-transform: uppercase;
+            text-decoration: none;
+            font: bold 200%/1 sans-serif;
+        }
+
+        .example1 { transform: skewX(45deg); }
+        .example1 > div { transform: skewX(-45deg); }
+
+        .example2 {
+            position: relative;
+            display: inline-block;
+            padding: .5em 1em;
+            border: 0; margin: .5em;
+            background: transparent;
+            color: white;
+            text-transform: uppercase;
+            text-decoration: none;
+            font: bold 200%/1 sans-serif;
+        }
+
+        .example2::before {
+            content: ''; /* To generate the box */
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            z-index: -1;
+            background: #58a;
+            transform: skew(45deg);
+        }
+    </style>
+</head>
+<body>
+    <button class="box">Click me</button>
+    <button class="box example1">Click me</button>
+     <button class="box example1"><div>Click me</div></button>
+     <button class="box example2">Click me</button>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>规则尝试</title>
+     <link rel="stylesheet" type="text/css" href="/lib/highight/style/monokai-sublime.css">
+</head>
+
+<body>
+
+reset设置
+
+<style type="text/css">
+ul,ol{
+    margin: 0;
+    padding: 0;
+}
+</style>
+<pre >
+<code class="css">
+ul,ol{
+    margin: 0;
+    padding: 0;
+}
+</code>
+</pre>
+
+
+<h3>counter-increment 实现</h3>
+<style type="text/css">
+    .demo-1 li{
+        counter-increment: rule_test_1;
+        list-style: none;
+    }
+    .demo-1 li:before{
+        content: counter(rule_test_1) '. ';
+    }
+    .demo-1 li:nth-child(n+10):before{
+        content: counter(rule_test_1) '.  ';
+    }
+</style>
+ <pre >
+<code class="css">
+.demo-1 li{
+    counter-increment: rule_test_1;
+}
+.demo-1 li:before{
+    content: counter(rule_test_1) '.';
+}
+</code>
+</pre>
+ <pre >
+<code class="xml">
+<div class="demo-1">
+    <ul>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+    </ul>
+</div>
+</code>
+</pre>
+<div class="demo-1">
+    <ul>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+    </ul>
+</div>
+
+<h3>counter-increment 实现 - 优化版</h3>
+<style type="text/css">
+.demo-3 li{
+    counter-increment: rule_test_3;
+    list-style: none;
+}
+.demo-3 li:before{
+    content: counter(rule_test_3) '. \00a0';
+}
+
+.demo-3 li:first-of-type:nth-last-of-type(n+10)::before, .demo-3 li:first-of-type:nth-last-of-type(n+10) ~ li:nth-of-type(-n+9)::before {
+     content: '\00a0\00a0' counter(rule_test_3) '. \00a0';
+}
+
+.demo-4 li{
+    counter-increment: rule_test_4;
+    list-style: none;
+}
+.demo-4 li:before{
+    content: counter(rule_test_4) '. \00a0';
+}
+
+.demo-4 li:first-of-type:nth-last-of-type(n+10)::before, .demo-4 li:first-of-type:nth-last-of-type(n+10) ~ li:nth-of-type(-n+9)::before {
+     content: '\00a0\00a0' counter(rule_test_3) '. \00a0';
+}
+/*.demo-3 li:first-child:nth-last-child(n+10):before,
+.demo-3 li:first-child:nth-last-child(n+10) ~ li:before{
+   
+}*/
+</style>
+ <pre >
+<code class="css">
+.demo-3 li{
+    counter-increment: rule_test_3;
+    list-style: none;
+}
+.demo-3 li:before{
+    content: counter(rule_test_3) '. \00a0';
+}
+
+.demo-3 li:first-of-type:nth-last-of-type(n+10)::before, .demo-3 li:first-of-type:nth-last-of-type(n+10) ~ li:nth-of-type(-n+9)::before {
+     content: '\00a0\00a0' counter(rule_test_3) '. \00a0';
+}
+
+.demo-4 li{
+    counter-increment: rule_test_4;
+    list-style: none;
+}
+.demo-4 li:before{
+    content: counter(rule_test_4) '. \00a0';
+}
+
+.demo-4 li:first-of-type:nth-last-of-type(n+10)::before, .demo-4 li:first-of-type:nth-last-of-type(n+10) ~ li:nth-of-type(-n+9)::before {
+     content: '\00a0\00a0' counter(rule_test_3) '. \00a0';
+}
+</code>
+</pre>
+ <pre >
+<code class="xml">
+<div class="demo-3">
+    <ul>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+    </ul>
+</div>
+<br/>
+<div class="demo-4">
+    <ul>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+    </ul>
+</div>
+</code>
+</pre>
+<div class="demo-3">
+    <ul>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+    </ul>
+</div>
+<br/>
+<div class="demo-4">
+    <ul>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+    </ul>
+</div>
+
+<h3 id="decimal">list-style: decimal 实现</h3>
+<style type="text/css">
+
+    .demo-2 ol{ list-style: decimal;}
+    .demo-2 ol li { margin-left: 25px; }
+    .demo-2 ol li:first-of-type:nth-last-of-type(-n+9), 
+    .demo-2 ol li:first-of-type:nth-last-of-type(-n+9) ~ li {margin-left: 15px; }
+
+    .demo-5 ol{ list-style: decimal;}
+    .demo-5 ol li { margin-left: 25px; }
+    .demo-5 ol li:first-of-type:nth-last-of-type(-n+9), 
+    .demo-5 ol li:first-of-type:nth-last-of-type(-n+9) ~ li {margin-left: 15px; }
+</style>
+ <pre >
+<code class="css">
+.demo-2 ol{ list-style: decimal;}
+.demo-2 ol li { margin-left: 25px; }
+.demo-2 ol li:first-of-type:nth-last-of-type(-n+9), 
+.demo-2 ol li:first-of-type:nth-last-of-type(-n+9) ~ li {margin-left: 15px; }
+
+.demo-5 ol{ list-style: decimal;}
+.demo-5 ol li { margin-left: 25px; }
+.demo-5 ol li:first-of-type:nth-last-of-type(-n+9), 
+.demo-5 ol li:first-of-type:nth-last-of-type(-n+9) ~ li {margin-left: 15px; }
+</code>
+</pre>
+ <pre >
+<code class="xml">
+<div class="demo-2">
+    <ol>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+    </ol>
+</div>
+<br/>
+<div class="demo-5">
+    <ol>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+    </ol>
+</div>
+</code>
+</pre>
+<div class="demo-2">
+    <ol>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+    </ol>
+</div>
+<br/>
+<div class="demo-5">
+    <ol>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+        <li>活动规则</li>
+    </ol>
+</div>
+
+
+<script type="text/javascript">
+    document.querySelectorAll("code").forEach(function(element) {
+    element.innerHTML = element.innerHTML.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+});
+</script>
+<script src="/lib/highight/9.12.0.min.js"></script>
+    <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

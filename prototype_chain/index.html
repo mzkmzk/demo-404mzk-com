@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>prototype chain</title>
+    <link rel="stylesheet" type="text/css" href="/lib/highight/style/monokai-sublime.css">
+</head>
+</head>
+<body>
+    看console和源代码
+    <pre >
+<code class="javascript:;">
+var Foo = function(){}
+var foo = new Foo()
+foo.a = 1
+Foo.prototype.a = 2
+console.log(foo)
+
+console.log(foo.prototype === undefined)
+console.log(foo.__proto__ === Foo.prototype)
+console.log(foo.__proto__.constructor === Foo)
+console.log(Foo.prototype.constructor === Foo)
+
+//对象
+var obj = {}
+console.log(obj)
+console.log( obj.__proto__ === Object.prototype)
+console.log(Object.prototype.__proto__ === null)
+
+//函数
+var fn = function(){}
+console.log( fn )
+console.log(fn.__proto__ === Function.prototype)
+console.log(Function.prototype.__proto__ === Object.prototype)
+console.log(Object.prototype.__proto__ === null)
+
+//正则
+var regExp = /a/
+console.log( regExp )
+console.log( regExp.__proto__ === RegExp.prototype)
+console.log( RegExp.prototype.__proto__ === Object.prototype)
+console.log( Object.prototype.__proto__ === null)
+
+//数组
+
+var array = []
+console.log(array)
+console.log(array.__proto__ === Array.prototype)
+console.log(Array.prototype.__proto__ === Object.prototype)
+console.log(Object.prototype.__proto__ === null)
+</code></pre>
+    <script>
+        var Foo = function(){}
+        var foo = new Foo()
+        foo.a = 1
+        Foo.prototype.a = 2
+        console.log(foo)
+
+        console.log(foo.prototype === undefined)
+        console.log(foo.__proto__ === Foo.prototype)
+        console.log(foo.__proto__.constructor === Foo)
+        console.log(Foo.prototype.constructor === Foo)
+        
+        //对象
+        var obj = {}
+        console.log(obj)
+        console.log( obj.__proto__ === Object.prototype)
+        console.log(Object.prototype.__proto__ === null)
+        
+        //函数
+        var fn = function(){}
+        console.log( fn )
+        console.log(fn.__proto__ === Function.prototype)
+        console.log(Function.prototype.__proto__ === Object.prototype)
+        console.log(Object.prototype.__proto__ === null)
+
+        //正则
+        var regExp = /a/
+        console.log( regExp )
+        console.log( regExp.__proto__ === RegExp.prototype)
+        console.log( RegExp.prototype.__proto__ === Object.prototype)
+        console.log( Object.prototype.__proto__ === null)
+
+        //数组
+        
+        var array = []
+        console.log(array)
+        console.log(array.__proto__ === Array.prototype)
+        console.log(Array.prototype.__proto__ === Object.prototype)
+        console.log(Object.prototype.__proto__ === null)
+    </script>
+    <script type="text/javascript">
+    document.querySelectorAll("code").forEach(function(element) {
+    element.innerHTML = element.innerHTML.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+});
+</script>
+<script src="/lib/highight/9.12.0.min.js"></script>
+    <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

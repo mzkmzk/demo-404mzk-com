@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>level 1</title>
+</head>
+<body>
+<script type="text/javascript">
+    
+    function escape1(input){
+        return '<input type="text" value="' + input + '">'
+    }
+    //><svg/onload=prompt(1)>
+    console.log(getUrlparam('xss'))
+    //var tmp = escape1( getUrlparam('xss'))
+    //console.log(tmp)
+    //document.body.innerHTML = tmp
+    document.body.innerHTML = escape1(`"onresize="prompt(1)`)
+</script>
+</body>
+</html>

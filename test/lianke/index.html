@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<!--
+ *  Copyright (c) 2015 The WebRTC project authors. All Rights Reserved.
+ *
+ *  Use of this source code is governed by a BSD-style license
+ *  that can be found in the LICENSE file in the root of the source
+ *  tree.
+ -->
+<html>
+    <head>
+        
+        <meta charset="utf-8">
+            <meta name="description" content="OneWallet Payment Simple Example">
+                <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
+                    <meta itemprop="description" content="OneWallet Payment Simple Example">
+                        <meta itemprop="name" content="OneWallet Payment Sample Example">
+                            <meta name="mobile-web-app-capable" content="yes">
+                                <meta id="theme-color" name="theme-color" content="#ffffff">
+                                    
+                                    
+                                        
+                                        <title>OneWallet Payment Simple Example</title>
+                                        
+                                        <style>
+                                            h2 {
+                                                font-size: 1.5em;
+                                                font-weight: 500;
+                                            }
+                                        h3 {
+                                            border-top: none;
+                                        }
+                                        section {
+                                            border-bottom: 1px solid #eee;
+                                            margin: 0 0 1.5em 0;
+                                            padding: 0 0 1.5em 0;
+                                        }
+                                        section:last-child {
+                                            border-bottom: none;
+                                            margin: 0;
+                                            padding: 0;
+                                        }
+                                        </style>
+    </head>
+    
+    <body>
+        <div id="container">
+            <div class="highlight">
+                <p>支付示例: <a href="./openOTC.html?t=1" target="_blank">去支付</a></p>
+            </div>
+        </div>
+        <script src="https://h5-m-ssl.xunlei.com/h5/lib/dist/client.min.js"></script>
+        <script type="application/javascript">
+
+            window.XLClient.app.checkAppInstalled({
+                appSchemes: ['net.onethingtech.wallet', 'com.eg.android.AlipayGphone'] // ['mqq', 'weixin'] appSchemes参数必须数组
+            }, function(data) {
+                
+                document.body.innerHTML += '是否安装了链克钱包: ' + data['net.onethingtech.wallet']
+                document.body.innerHTML += '是否安装了支付宝: ' + data['com.eg.android.AlipayGphone']
+            });
+            
+        </script>
+        
+    </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <div class="j_div">
+        <a href="javascript:;" class="j_p">点我啊</a>
+    </div>
+
+<script type="text/javascript">
+    document.querySelector('.j_div').addEventListener('click', function(e){
+
+        console.log('代理-冒泡中')
+        console.log('target')
+        console.log(e.target)
+        console.log('currentTarget')
+        console.log(e.currentTarget)
+        console.log('this')
+        console.log(this)
+    })
+
+     document.querySelector('.j_div').addEventListener('click', function(e){
+        console.log('代理-捕抓中')
+        console.log('target')
+        console.log(e.target)
+        console.log('currentTarget')
+        console.log(e.currentTarget)
+        console.log('this')
+        console.log(this)
+    }, true)
+
+     document.querySelector('.j_p').addEventListener('click', function(e){
+        console.log('目标阶段')
+        console.log('target')
+        console.log(e.target)
+        console.log('currentTarget')
+        console.log(e.currentTarget)
+        console.log('this')
+        console.log(this)
+    })
+</script>
+     
+</body>
+</html>

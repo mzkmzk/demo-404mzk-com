@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+function escape(input) {
+    //                      v-- frowny face
+    input = input.replace(/[=(]/g, '');
+
+    // ok seriously, disallows equal signs and open parenthesis
+    return input;
+}
+//在chrome中已无效
+document.body.innerHTML = escape('<svg><script>alert&#40;1)<\/script>')
+</script>
+</body>
+</html>

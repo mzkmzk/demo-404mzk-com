@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+     <link rel="stylesheet" type="text/css" href="/lib/highight/style/monokai-sublime.css">
+</head>
+
+<body>
+
+
+<h3>兄弟节点获取</h3>
+<style type="text/css">
+    .demo1 div  + p {
+        background-color: yellow;
+    }
+</style>
+ <pre >
+<code class="css">
+.demo1 div  + p {
+    background-color: yellow;
+}
+</code>
+</pre>
+ <pre >
+<code class="xml">
+<div class="demo1">
+    <p>0</p>
+    <div></div>
+    <span>span</span>
+    <p>1</p>
+    <div></div>
+    <p>2</p>
+    <p>3</p>
+</div>
+</code>
+</pre>
+<div class="demo1">
+    <p>0</p>
+    <div></div>
+    <span>span</span>
+    <p>1</p>
+    <div></div>
+    <p>2</p>
+    <p>3</p>
+</div>
+
+
+<h3 id="demo2">兄弟节点获取2</h3>
+<style type="text/css">
+    .demo2 div  ~ p {
+        background-color: yellow;
+    }
+</style>
+ <pre >
+<code class="css">
+.demo2 div  ~ p {
+    background-color: yellow;
+}
+</code>
+</pre>
+ <pre >
+<code class="xml">
+<div class="demo2">
+    <p>0</p>
+    <div></div>
+    <span>span</span>
+    <p>1</p>
+    <p>2</p>
+</div>
+</code>
+</pre>
+<div class="demo2">
+    <p>0</p>
+    <div></div>
+    <span>span</span>
+    <p>1</p>
+    <p>2</p>
+</div>
+
+<h3 id="demo3">元素属性选择器</h3>
+<style type="text/css">
+.demo3 p[class=a] { background-color: yellow; }
+.demo3 p[class~=b] { background-color: yellow; }
+.demo3 p[class|=c] { background-color: yellow; }
+</style>
+ <pre >
+<code class="css">
+.demo3 p[class=a] { background-color: yellow; }
+.demo3 p[class~=b] { background-color: yellow; }
+.demo3 p[class|=c] { background-color: yellow; }
+</code>
+</pre>
+ <pre >
+<code class="xml">
+<div class="demo3">
+    <p class="a">0</p>
+    <p class="d b">1</p>
+    <p class="d_b">2</p> <!-- 辟谣 class~=b 匹配class中包含b的元素 -->
+    <p class="c-e">3</p>
+    <p class="e-c">4</p> <!-- 辟谣 class|=c 匹配以-为分隔符 值为c的元素 -->
+    <p class="c_e">5</p> <!-- 辟谣 class|=c 匹配以c开头的所有元素-->
+    
+</div>
+</code>
+</pre>
+<div class="demo3">
+    <p class="a">0</p>
+    <p class="d b">1</p>
+    <p class="d_b">2</p> <!-- 辟谣 class~=b 匹配class中包含b的元素 -->
+    <p class="c-e">3</p>
+    <p class="e-c">4</p> <!-- 辟谣 class|=c 匹配以-为分隔符 值为c的元素 -->
+    <p class="c_e">5</p> <!-- 辟谣 class|=c 匹配以c开头的所有元素-->
+</div>
+
+<h3 id="demo4">nth-child(n) 和 :nth-of-type(n) 的区别</h3>
+<style type="text/css">
+.demo4 p:nth-child(2) { background-color: yellow; }
+.demo4 p:nth-of-type(2) {background-color: red;}
+</style>
+ <pre >
+<code class="css">
+.demo4 p:nth-child(2) { background-color: yellow; }
+.demo4 p:nth-of-type(2) {background-color: red;}
+</code>
+</pre>
+ <pre >
+<code class="xml">
+<div class="demo4">
+    <span>0</span>
+    <p>1</p>
+    <p>2</p>
+    
+</div>
+</code>
+</pre>
+<div class="demo4">
+    <span>0</span>
+    <p>1</p> <!-- .demo4 p:nth-child(2) 匹配父元素的第2个元素 并且要为p标签 -->
+    <p>2</p> <!-- .demo4 p:nth-of-type(2) 匹配父元素的第二个p元素-->
+    
+</div>
+
+<h3 id="demo5">:active</h3>
+<style type="text/css">
+.demo5 p:active { background-color: yellow; }
+
+</style>
+ <pre >
+<code class="css">
+.demo5 p:active { background-color: yellow; }
+</code>
+</pre>
+ <pre >
+<code class="xml">
+<div class="demo5">
+
+    <p>0</p>
+    
+</div>
+</code>
+</pre>
+<div class="demo5">
+
+    <p >0</p>
+    
+</div>
+
+<h3 id="demo6">:focus</h3>
+<style type="text/css">
+.demo6 p:focus { background-color: yellow; }
+</style>
+ <pre >
+<code class="css">
+.demo6 p:focus { background-color: yellow; }
+</code>
+</pre>
+ <pre >
+<code class="xml">
+<div class="demo6">
+    <p>0</p>
+</div>
+</code>
+</pre>
+<div class="demo6">
+    <p tabindex=1>0</p>
+</div>
+
+<h3 id="demo7">:first-line和:first-letter</h3>
+<style type="text/css">
+.demo7 .p:first-line { background-color: yellow; }
+.demo7 .p1:first-letter { background-color: yellow; }
+
+</style>
+ <pre >
+<code class="css">
+.demo7 .p:first-line { background-color: yellow; }
+.demo7 .p1:first-letter { background-color: yellow; }
+</code>
+</pre>
+ <pre >
+<code class="xml">
+<div class="demo7">
+<p class="p">1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111<br/>ww</p>
+<p class="p">11111111111111111111111111<br/>ww</p>
+<p class="p1">我我</p>
+<p class="p1">11</p>
+<p class="p1">ww</p>
+</div>
+</code>
+</pre>
+<div class="demo7">
+<p class="p">1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111<br/>ww</p>
+<p class="p">11111111111111111111111111<br/>ww</p>
+<p class="p1">我我</p>
+<p class="p1">11</p>
+<p class="p1">ww</p>
+</div>
+
+
+
+
+<h3 id="demo8">:nth-child 选择区间元素</h3>
+<style type="text/css">
+.demo8 .p:nth-child(n+8):nth-child(-n+15) { background-color: yellow; }
+
+</style>
+ <pre >
+<code class="css">
+.demo8 .p:nth-child(n+8):nth-child(-n+15) { background-color: yellow; }
+</code>
+</pre>
+ <pre >
+<code class="xml">
+<div class="demo8">
+<p class="p">1</p>
+<p class="p">2</p>
+<p class="p">3</p>
+<p class="p">4</p>
+<p class="p">5</p>
+<p class="p">6</p>
+<p class="p">7</p>
+<p class="p">8</p>
+<p class="p">9</p>
+<p class="p">10</p>
+<p class="p">11</p>
+<p class="p">12</p>
+<p class="p">13</p>
+<p class="p">14</p>
+<p class="p">15</p>
+<p class="p">16</p>
+</div>
+</code>
+</pre>
+<div class="demo8">
+<p class="p">1</p>
+<p class="p">2</p>
+<p class="p">3</p>
+<p class="p">4</p>
+<p class="p">5</p>
+<p class="p">6</p>
+<p class="p">7</p>
+<p class="p">8</p>
+<p class="p">9</p>
+<p class="p">10</p>
+<p class="p">11</p>
+<p class="p">12</p>
+<p class="p">13</p>
+<p class="p">14</p>
+<p class="p">15</p>
+<p class="p">16</p>
+</div>
+
+<h3 id="demo9">:nth-child 当元素大于10个时选择前10个</h3>
+<style type="text/css">
+
+.demo9 .p{ background-color: yellow; }
+.demo9 .p:first-child:nth-last-child(n+10), .demo9 .p:first-child:nth-last-child(n+10) ~ .p:nth-child(-n+9) { background-color: red; }
+.demo9 .p:first-child:nth-last-child(n+10) ~ .p:nth-child(n+10) { background-color: blue; }
+
+.demo10 .p{ background-color: yellow; }
+.demo10 .p:first-child:nth-last-child(n+10), .demo9 .p:first-child:nth-last-child(n+10) ~ .p:nth-child(-n+9) { background-color: red; }
+.demo10 .p:first-child:nth-last-child(n+10) ~ .p:nth-child(n+10) { background-color: blue; }
+
+</style>
+ <pre >
+<code class="css">
+.demo9 .p:not(.p:first-of-type:nth-last-type(-n+10) ~ .p)  { background-color: yellow; }
+.demo10 .p:not(.p:first-of-type:nth-last-type(-n+10) ~ .p)  { background-color: yellow; }
+</code>
+</pre>
+ <pre >
+<code class="xml">
+<div class="demo9">
+<p class="p">1</p>
+<p class="p">2</p>
+<p class="p">3</p>
+<p class="p">4</p>
+<p class="p">5</p>
+<p class="p">6</p>
+<p class="p">7</p>
+<p class="p">8</p>
+<p class="p">9</p>
+<p class="p">10</p>
+<p class="p">11</p>
+</div>
+
+<div class="demo10">
+<p class="p">1</p>
+<p class="p">2</p>
+<p class="p">3</p>
+<p class="p">4</p>
+<p class="p">5</p>
+<p class="p">6</p>
+<p class="p">7</p>
+<p class="p">8</p>
+<p class="p">9</p>
+</div>
+</code>
+</pre>
+<div class="demo9">
+<p class="p">1</p>
+<p class="p">2</p>
+<p class="p">3</p>
+<p class="p">4</p>
+<p class="p">5</p>
+<p class="p">6</p>
+<p class="p">7</p>
+<p class="p">8</p>
+<p class="p">9</p>
+<p class="p">10</p>
+<p class="p">11</p>
+</div>
+
+<div class="demo10">
+<p class="p">1</p>
+<p class="p">2</p>
+<p class="p">3</p>
+<p class="p">4</p>
+<p class="p">5</p>
+<p class="p">6</p>
+<p class="p">7</p>
+<p class="p">8</p>
+<p class="p">9</p>
+</div>
+
+
+<script type="text/javascript">
+    document.querySelectorAll("code").forEach(function(element) {
+    element.innerHTML = element.innerHTML.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+});
+</script>
+<script src="/lib/highight/9.12.0.min.js"></script>
+    <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+</body>
+</html>

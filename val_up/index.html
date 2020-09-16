@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>val up</title>
+</head>
+<body>
+    看控制台
+    <script>
+        var b = function(a){
+            console.log(a)  // ƒ a(){}
+            var a = 2
+            function a(){}
+            console.log(a) //2
+        }
+        b(1)
+    </script>
+</body>
+</html>

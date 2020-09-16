@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<!--<script src="https://unpkg.com/axios/dist/axios.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>-->
+    <script src="https://img-vip-ssl.a.88cdn.com/lib/jquery/1.12.4/jquery.min.js"></script>
+
+<script type="text/javascript">
+     /*axios({
+          url: 'http://127.0.0.1:9090/upload_axios',
+          method: 'POST',
+          /*headers: {
+                Accept: 'application/json; version=1.0',
+                Authorization: 'Basic mzk',
+                //Cookie: 'userid='+getCookie('userid')+'; sessionid='+getCookie('userid')+ '; appid=' + getCookie('appid')
+            },*//*
+          data: { data: 1}
+        })
+          .then(res => {
+            if (res.error) {
+              throw new Error(res.error)
+            }
+            console.log(res)
+            return res 
+          })*/
+    //document.domain = '404mzk.com';
+    //document.cookie = 'key1=value2; path=/; domain=.404mzk.com; '
+    var xhr = new XMLHttpRequest();//XDomainRequest
+    
+    xhr.open('GET', 'http://test.404mzk.com/upload_ie', true)
+    xhr.setRequestHeader('testHeader', 'HI MZK')
+    xhr.send(null)
+
+
+    /*$.ajax({
+        url: 'http://127.0.0.1:9090/upload_jquery',
+        method: 'POST'
+    })
+    .then(res => {
+            if (res.error) {
+              throw new Error(res.error)
+            }
+            console.log(res)
+            return res 
+          })*/
+</script>
+</body>
+</html>

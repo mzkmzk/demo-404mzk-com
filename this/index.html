@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> this</title>
+</head>
+<body>
+    打开控制台查看log或断点
+
+    <script>
+       
+        var data = 'globalData'
+        //bind apply 箭头会遵循哪个?
+        var bindThis = { data: 'bindThisData'},
+            bind2This = { data: 'bind2This'},
+            applyThis = { data: 'applyThisData'},
+            callThis = { data: 'callThisData'},
+            testObj = {
+                data: 'testObjData',
+                simple: function(){
+                    var testFn = function(){
+                        console.log(this.data)
+                    },
+                    obj = { data: 'objData'}
+                    console.log(this.data)
+                    testFn()
+                    obj.testFn = testFn
+                    obj.testFn()
+                },
+                all: function(){
+                    var testFn = () => {
+                        console.log(this.data)
+                    }
+
+                    testFn = testFn.bind(bindThis)
+                    testFn.apply(applyThis)
+                    testFn()
+                },
+                binAndApply: function(){
+                    var testFn =function(){
+                        console.log(this.data)
+                    }
+
+                    testFn = testFn.bind(bindThis)
+                    testFn.apply(applyThis)
+                    testFn()
+                },
+                
+                bind2: function(){
+                    var testFn = function(){
+                        console.log(this.data)
+                    }
+                    testFn1 = testFn.bind(bindThis)
+                    testFn2 = testFn1.bind(bind2This)
+                    testFn2()
+                },
+                constructorAndArrow: function(){
+                    var testFn = () => {
+                        console.log(this.data)
+                    }
+                   
+                    new testFn()
+                   //会报错
+                },
+                constructorAndBind: function(){
+                    var testFn = () => {
+                        console.log(this.data)
+                    }
+                    testFn = testFn.bind(bindThis)
+                   
+                    new testFn()
+                }
+
+            }
+            console.log('testObj.simple 开始')
+            testObj.simple()
+            console.log('testObj.all 开始')
+            testObj.all()
+            console.log('testObj.binAndApply 开始')
+            testObj.binAndApply()
+            console.log('testObj.bind2 开始')
+            testObj.bind2()
+            
+            try{
+                console.log('testObj.constructorAndArrow 开始')
+                testObj.constructorAndArrow()
+            }catch(e){
+                console.log(e)
+            }
+            try{
+                console.log('testObj.constructorAndBind 开始')
+                testObj.constructorAndBind()
+            }catch(e){
+                console.log(e)
+            }
+             
+            
+
+    </script>
+</body>
+</html>

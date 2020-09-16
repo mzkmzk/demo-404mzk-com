@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>base</title>
+</head>
+<body>
+    <select>
+    <script> 
+        document.write("<OPTION value=1>"+document.location.href.substring(document.location.href.indexOf("default=")+8)+"</OPTION>");  
+        document.write("<OPTION value=2>English</OPTION>");    
+    </script>
+</select> 
+<script type="text/javascript">
+    console.log( location.href)
+    console.log( location.href.substring( location.href.indexOf("default=")+8))
+</script>
+</body>
+</html>

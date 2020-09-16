@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        .text-box{
+            width: 200px ;
+            height: 100px;
+            padding: 10px 20px;
+            margin: 10px;
+        }
+        .background-position{
+            background: url('./images/code-pirate.svg') no-repeat #58a bottom right;
+            background-position: right 20px bottom 10px;
+        }
+        .background-origin{
+            background: url('./images/code-pirate.svg') no-repeat #58a bottom right;
+            background-origin: content-box;
+            background-position: right bottom;
+        }
+        .background-cale{
+            background: url('./images/code-pirate.svg') no-repeat #58a bottom right;
+            background-position:  calc(100% - 20px)  calc(100% - 10px);
+        }
+    </style>
+</head>
+<body>
+    <div class="text-box background-position">
+        xxx
+    </div>
+    <div class="text-box background-origin">
+        xxx
+    </div>
+    <div class="text-box background-cale">
+        xxx
+    </div>
+</body>
+</html>

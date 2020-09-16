@@ -10,7 +10,7 @@ it('global_window 无内存泄露', function(done){
     setTimeout(function(){ //加个延迟, 不然rss可能还没回收完毕
         console.log('global_window_true 结束时内存占用: ' + utils.get_memory())
         done()
-    }, 1000)
+    }, 0)
     
 })
 
@@ -23,7 +23,7 @@ it('global_window 有内存泄露', function(done){
      setTimeout(function(){//加个延迟, 不然rss可能还没回收完毕
          console.log('global_window_false 结束时内存占用: ' + utils.get_memory())
         done()
-    }, 1000)
+    }, 0)
    
 })
 

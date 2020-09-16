@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>extend</title>
+</head>
+<body>
+    打开console查看son的属性
+    <script >
+        
+        function inheritPrototype(subType, superType){
+            var prototype = Object(superType.prototype)
+            prototype.constructor = subType
+            subType.prototype = prototype
+        }
+
+        var Grandfather = function(name){
+            this.grandfahterName = name
+        }
+        Grandfather.prototype.grandfatherFn = function(){}
+
+        var Father = function(name){
+            Grandfather.apply(this, arguments)
+            this.fatherName = name
+        }
+        inheritPrototype(Father, Grandfather)
+        Father.prototype.fatherFn = function(){}
+
+        var Son = function(name){
+            Father.apply(this, arguments)
+            this.sonName = name
+        }
+        inheritPrototype(Son, Father)
+        Son.prototype.sonFn = function(){}
+
+        var son = new Son('mzk')
+        console.log(son)
+        debugger;
+        console.log( typeof son) //object
+        console.log( son.__proto__ === Son.prototype)
+        console.log( Son.prototype === Father.prototype)
+        console.log( Father.prototype === Grandfather.prototype)
+        console.log( son instanceof Son)
+        console.log( son instanceof Father)
+        console.log( son instanceof Grandfather)
+    </script>
+</body>
+</html>

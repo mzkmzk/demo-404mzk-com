@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    function escape(input) {
+        // tags stripping mechanism from ExtJS library
+        // Ext.util.Format.stripTags
+        var stripTagsRE = /<\/?[^>]+>/gi;
+        input = input.replace(stripTagsRE, '');
+
+        return '<p>' + input + '</p>';
+    }
+    document.body.innerHTML = escape('<svg/onload=alert(1)//')
+</script>
+</body>
+</html>

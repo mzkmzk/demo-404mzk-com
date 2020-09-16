@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--
+ *  Copyright (c) 2015 The WebRTC project authors. All Rights Reserved.
+ *
+ *  Use of this source code is governed by a BSD-style license
+ *  that can be found in the LICENSE file in the root of the source
+ *  tree.
+ -->
+<html>
+    <head>
+        
+        <meta charset="utf-8">
+            <meta name="description" content="OneWallet Payment Simple Example">
+                <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
+                    <meta itemprop="description" content="OneWallet Payment Simple Example">
+                        <meta itemprop="name" content="OneWallet Payment Sample Example">
+                            <meta name="mobile-web-app-capable" content="yes">
+                                <meta id="theme-color" name="theme-color" content="#ffffff">
+                                    
+                                    <base target="_blank">
+                                        
+                                        <title>OneWallet Payment Simple Example</title>
+                                        
+                                        <style>
+                                            h2 {
+                                                font-size: 1.5em;
+                                                font-weight: 500;
+                                            }
+                                        h3 {
+                                            border-top: none;
+                                        }
+                                        section {
+                                            border-bottom: 1px solid #eee;
+                                            margin: 0 0 1.5em 0;
+                                            padding: 0 0 1.5em 0;
+                                        }
+                                        section:last-child {
+                                            border-bottom: none;
+                                            margin: 0;
+                                            padding: 0;
+                                        }
+                                        </style>
+    </head>
+    
+    <body>
+        <div id="container">
+            <p >2</p>
+            <ul class="j_ul"></ul>
+        </div>
+        <script src="https://h5-m-ssl.xunlei.com/h5/lib/dist/client.min.js"></script>
+        <script type="application/javascript">
+            if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
+                var loadDateTime = new Date().getTime();
+                document.querySelector('.j_ul').innerHTML += '<li>loadDateTime: '+loadDateTime+'</li>'
+                window.setTimeout(function() {
+                                    var timeOutDateTime = new Date().getTime();
+                                    document.querySelector('.j_ul').innerHTML += '<li> document.hidden: '+ document.hidden+'</li>'
+                                    document.querySelector('.j_ul').innerHTML += '<li>document.webkitHidden: '+document.webkitHidden+'</li>'
+                                  
+                                   document.querySelector('.j_ul').innerHTML += '<li>timeOutDateTime: '+timeOutDateTime+'</li>'
+                                  if (timeOutDateTime - loadDateTime < 100) {
+                                    document.querySelector('.j_ul').innerHTML += '<li>download</li>'
+                                  } else {
+                                    document.querySelector('.j_ul').innerHTML += '<li>close</li>'
+                                    //window.close();
+                                  }
+                                  },
+                                25);
+                location.href = "otst://payment?tx-data=Y2FsbGJhY2s9aHR0cCUzQSUyRiUyRnRlc3QtcHJveHkucGF5Lnh1bmxlaS5jb20lM0ExNDQ0NCUyRm9uZVRoaW5nQ29pblBheUNhbGxiYWNrJmRlc2M95Y2H57qn6L%2BF6Zu36LaF57qn5Lya5ZGYJm9yZGVyX2lkPTE4MDUxNjY0NTMzOTgyNjAwMjY1JnByZXBheV9pZD0yMDE4MDUxNjE0NDk1ODAwMDQwMTAxMjg0NDIxODI3MDk4Njgmc2VydmljZV9pZD00JnNpZ249MThiZDU0Nzk0OTM3NjdmOTA4M2ViMjhmYjEzOTU5NzMmdG89MHhlOTc2YWU3Y2YzM2JhNWZjZWEwZmQ1MDE4MjUxYjhmMjMwZDI2MDM1JnZhbHVlPTEwMDAwMDAwMDAwMDAwMDAw";//payment?tx-data=Y2FsbGJhY2s9aHR0cCUzQSUyRiUyRnRlc3QtcHJveHkucGF5Lnh1bmxlaS5jb20lM0ExNDQ0NCUyRm9uZVRoaW5nQ29pblBheUNhbGxiYWNrJmRlc2M95Y2H57qn6L%2BF6Zu36LaF57qn5Lya5ZGYJm9yZGVyX2lkPTE4MDUxNjY0NTMzOTgyNjAwMjY1JnByZXBheV9pZD0yMDE4MDUxNjE0NDk1ODAwMDQwMTAxMjg0NDIxODI3MDk4Njgmc2VydmljZV9pZD00JnNpZ249MThiZDU0Nzk0OTM3NjdmOTA4M2ViMjhmYjEzOTU5NzMmdG89MHhlOTc2YWU3Y2YzM2JhNWZjZWEwZmQ1MDE4MjUxYjhmMjMwZDI2MDM1JnZhbHVlPTEwMDAwMDAwMDAwMDAwMDAw
+            } else if (navigator.userAgent.match(/android/i)) {
+                var state = null;
+                try {
+                    state = window.open("otst://payment?tx-data=Y2FsbGJhY2s9aHR0cCUzQSUyRiUyRnByb3h5LnBheS54dW5sZWkuY29tJTJGb25lVGhpbmdDb2luUGF5Q2FsbGJhY2smZGVzYz3ljYfnuqfov4Xpm7fotoXnuqfkvJrlkZgmb3JkZXJfaWQ9MTgwNTIyNjk2NjU0NjgxNTAyNDImcHJlcGF5X2lkPTIwMTgwNTIyMTMyMjI2MDAwNDAxMDIyNjU1MTE4Mjk3NTYxMSZzZXJ2aWNlX2lkPTQmc2lnbj02M2E2Yzg4NzVkYTEzN2FmNzk4OGExY2ZhYTU0NmE2OCZ0bz0weGRlOWYyZDcxOGNjOGRlNDNjZTIwMTUxYWI5MmJiM2ZmNTM1ZmQ0YzgmdmFsdWU9NTAwMDAwMDAwMDAwMDAwMDAwMA%3D%3D", '_blank');
+                    document.querySelector('.j_ul').innerHTML += '<li>state: '+ state+'</li>'
+                } catch(e) {
+                    document.querySelector('.j_ul').innerHTML += '<li>catch: '+ JSON.stringify(e)+'</li>'
+                }
+                if (state) {
+                    //window.close();
+                } else {
+                    window.location = "https://baidu.com";
+                }
+            }
+        </script>
+        
+    </body>
+</html>

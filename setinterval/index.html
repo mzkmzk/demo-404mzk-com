@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>定时器文章</title>
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<h1> 定时器和普通代码执行顺序</h1>
+<p class="j_test_delay_1"></p>
+<p class="j_test_delay_settimeout"></p>
+<p class="j_test_delay_2"></p>
+
+<h1> 定时器传参</h2>
+
+<p class="j_test_params_1"></p>
+
+<p class="j_test_params_2"></p>
+
+<h1>更严格时间间隔(1S)</h3>
+<button class="j_test_delay_time_start">开始</button>
+<ul class="j_test_delay_time_1" style="height: 200px">
+    <li>interval实现</li>
+</ul>
+
+<ul class="j_test_delay_time_2" style="height: 200px">
+    <li>自行setTimeout实现 interval</li>
+</ul>
+
+<h1>只允许数字</h1>
+
+<input class="j_upper_input_1" />
+<input class="j_upper_input_2"/>
+
+<h1>未激活TAB的最小延时</h1>
+
+<ul class="j_min_delay_1" style="display: inline-block">
+    <li>默认的setInterval</li>
+</ul>
+<ul class="j_min_delay_2" style="display: inline-block">
+    <li>setTimeout实现的setInterval</li>
+</ul>
+<script >
+    var test_delay = function(){
+        for (var i = 0; i < 10000 ; i++) {
+            document.querySelector('.j_test_delay_1').innerHTML = i + ' ' + new Date().getTime()
+        }
+        setTimeout(function(){
+            document.querySelector('.j_test_delay_settimeout').innerHTML = 'setTimeout' + new Date().getTime()
+
+        }, 0)
+        for (var i = 0; i < 10000; i++) {
+            document.querySelector('.j_test_delay_2').innerHTML =  i + ' ' + new Date().getTime()
+        }
+        
+    }
+    test_delay()
+
+    //=====================
+    
+    var test_bibao = function(){
+        
+        for (var i = 0; i < 10; i++) {
+            setTimeout(function(){
+                document.querySelector('.j_test_params_1').innerHTML +=  i + ' '
+            },0)
+            
+            setTimeout((function(a){
+                document.querySelector('.j_test_params_1').innerHTML +=  a + ' '
+            })(i) , 0)
+
+            setTimeout(function(a){
+                document.querySelector('.j_test_params_2').innerHTML +=  a + ' '
+            },0, i)
+        }
+    }
+    test_bibao()
+    
+    //================== 更严格的时间间隔
+    
+    var sleep = function(second){
+        var tmp_time = new Date().getTime()
+       for (var i = 0; i < Math.pow(100, 31); i++) {
+           if ( (new Date().getTime() - tmp_time) > second){
+            break
+           }
+            
+       }
+    }
+
+    var my_setinterval = function(func, timeout) {
+          setTimeout(function() {
+            var result = func();
+
+            if ( result === false) return 
+
+            my_setinterval(func, timeout);
+          }, timeout);
+        },
+        callback = function(selector, num, prev_time){
+            return function(resolve){
+                if ( num === 0 ) {
+                    if (interval_id){
+                        clearInterval(interval_id)
+                        interval_id = null
+                        resolve()
+                    }
+                    return false
+                }
+                document.querySelector(selector).innerHTML += '<li>距离上次执行: ' + (new Date().getTime() - prev_time) + '</li>'
+                
+                sleep(200)
+                prev_time = new Date().getTime()
+                num--
+            }
+            
+        },
+        interval_id
+    
+    var delay_jiange = function(){
+        new Promise(function(resolve){
+            interval_id = setInterval(callback('.j_test_delay_time_1', 5 , new Date().getTime()), 1000, resolve)
+        })
+        .then( function(){
+            my_setinterval(callback('.j_test_delay_time_2', 5 , new Date().getTime()), 1000)
+        })
+    }
+
+    document.querySelector('.j_test_delay_time_start').onClick = function(){
+        delay_jiange
+    }
+    
+
+    
+    //=================
+   
+   var string_upper = function(){
+    var prev_string = ''
+    document.querySelector('.j_upper_input_1').onkeydown = function () {
+
+      if ( isNaN(this.value) ){
+        this.value = prev_string
+      }else if (this.value === '' ){
+
+      }else {
+        console.log(this.value)
+        this.value = parseInt(this.value)
+        prev_string = this.value
+      }
+     
+    }
+    
+    var prev_string_2 = ''
+    document.querySelector('.j_upper_input_2').onkeydown = function() {
+      var self = this;
+      setTimeout(function() {
+        if ( isNaN(self.value) ){
+            self.value = prev_string_2
+        }else if (self.value === '' ){
+
+        }else {
+            self.value = parseInt(self.value)
+            prev_string_2 = self.value
+        }
+      }, 0);
+    }
+   }
+    
+    string_upper()
+
+    //=======Promise测试
+    setTimeout(function(){
+        console.log(10)
+    })
+    new Promise(function(resolve){
+        console.log(1)
+        resolve()
+        console.log(2)
+    })
+    .then(function(){
+        return new Promise(function(resolve){
+            console.log(3)
+            resolve()
+        })
+    })
+    .then(function(){
+        return new Promise(function(resolve){
+            console.log(4)
+            resolve()
+        })
+    })
+    .then(function(){
+        console.log(5)
+    })
+     console.log(21)
+    
+    //====== 非激活TAB最小延时
+    
+    
+    var min_delay = function(classname, first_li){
+        var prev_min_delay_time = new Date().getTime()
+        return function(){
+            if (document.querySelector(classname).innerHTML.length > 500){
+                document.querySelector(classname).innerHTML = first_li || ''
+            }
+            document.querySelector(classname).innerHTML += '<li>' + (new Date().getTime() - prev_min_delay_time)+ '</li>'
+            prev_min_delay_time = new Date().getTime()
+        }
+    }
+    setInterval(min_delay('.j_min_delay_1', '<li>系统默认setInterval</li>'), 500)
+    
+    my_setinterval(min_delay('.j_min_delay_2', '<li>setTimeout实现的setInterval</li>'), 500)
+</script>
+</body>
+</html>

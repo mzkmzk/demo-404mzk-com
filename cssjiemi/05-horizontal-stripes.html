@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        .box{
+            width: 300px;
+            height: 300px;
+            margin: 30px;
+            display: inline-block;
+        }
+        
+        .sample{
+            background: linear-gradient(#fb3, #58a);
+        }
+
+        .smaple2{
+            background: linear-gradient(#fb3 10%, #58a 30%);
+        }
+
+        .sample-horizontal{
+            background: linear-gradient(#fb3 50%, #58a 50%);
+            background-size: 100% 30px
+        }
+
+        .sample-vertical{
+            background: linear-gradient(90deg, #fb3 50%, #58a 50%);
+            background-size: 30px 100%;
+
+        }
+
+        .sample-error-diagonal{
+            background: linear-gradient(45deg, #fb3 50%, #58a 0);
+            background-size: 30px 30px;
+        }
+
+         .sample-error-diagonal{
+            background: linear-gradient(45deg, #fb3 50%, #58a 0);
+            background-size: 30px 30px;
+        }
+
+        .sampler-diagonal-stripes{
+            background: linear-gradient(45deg, #fb3 25%, #58a 0, #58a 50%, #fb3 0, #fb3 75%, #58a 0);
+            background-size: 42.426406871px 42.426406871px;
+        }
+
+        .diagonal-stripes-45deg{
+            background: repeating-linear-gradient(45deg, #fb3 0, #fb3 15px, #58a 0, #58a 30px);
+            
+        }
+
+        .subtle-stripes{
+            background: repeating-linear-gradient(30deg, 
+                                                #79b, #79b 15px,
+                                                #58a 0, #58a 30px);
+        }
+
+        .subtle-stripes-image{
+            background: #58a;
+            background-image: repeating-linear-gradient(30deg, 
+                                                        hsla(0, 0%, 100%, .1),
+                                                        hsla(0, 0%, 100%, .1) 15px,
+                                                        transparent 0, transparent 30px);
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="box sample"></div>
+    <div class="box smaple2"></div>
+    <div class="box sample-horizontal"></div>
+    <div class="box sample-vertical"></div>
+    <div class="box sample-error-diagonal"></div>
+    <div class="box sampler-diagonal-stripes"></div>
+    <div class="box diagonal-stripes-45deg"></div>
+    <div class="box subtle-stripes"></div>
+     <div class="box subtle-stripes-image"></div>
+</body>
+</html>
